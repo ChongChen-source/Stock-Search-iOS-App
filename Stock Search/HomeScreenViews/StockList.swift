@@ -15,15 +15,24 @@ struct StockList: View {
 
             List {
                 Section(header: Text("PORTFOLIO")) {
-                    StockRow()
-                    StockRow()
+                    NavigationLink(destination: StockDetails()) {
+                        StockRow()
+                    }
+                    NavigationLink(destination: StockDetails()) {
+                        StockRow()
+                    }
                 }
                 Section(header: Text("FAVORITES")) {
-                    StockRow()
-                    StockRow()
+                    NavigationLink(destination: StockDetails()) {
+                        StockRow()
+                    }
+                    NavigationLink(destination: StockDetails()) {
+                        StockRow()
+                    }
                 }
             }
-            .navigationBarTitle(Text("\(dateString(date: date))")).onAppear(perform: {let _ = self.updateTimer})        }
+            .navigationBarTitle(Text("\(dateString(date: date))")
+                                    ).onAppear(perform: {let _ = self.updateTimer})        }
     }
     
     var dateFormat: DateFormatter {

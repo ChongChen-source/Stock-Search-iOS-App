@@ -10,15 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
             
-        VStack(alignment: .leading) {
-            Text("Hello")
-                .font(.title)
-                
-            HStack {
-                Text("New Line")
-                Spacer()
-                Text("Placeholder")
-            }
+        VStack {
+            StockList()
         }
         .padding()
     }
