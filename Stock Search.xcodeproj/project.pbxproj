@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D485FCAB256AA8DE00390E54 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCAA256AA8DE00390E54 /* StockRow.swift */; };
+		D485FCB3256AA90300390E54 /* StockList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCB2256AA90300390E54 /* StockList.swift */; };
 		D4F102E5256511A200C16A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102E4256511A200C16A0D /* AppDelegate.swift */; };
 		D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102E6256511A200C16A0D /* SceneDelegate.swift */; };
 		D4F102E9256511A200C16A0D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102E8256511A200C16A0D /* ContentView.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D485FCAA256AA8DE00390E54 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
+		D485FCB2256AA90300390E54 /* StockList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockList.swift; sourceTree = "<group>"; };
 		D4F102E1256511A200C16A0D /* Stock Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stock Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F102E4256511A200C16A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4F102E6256511A200C16A0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D485FCB7256AA91B00390E54 /* TestResources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TestResources;
+			sourceTree = "<group>";
+		};
+		D485FCBB256AA9C200390E54 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D4F102D8256511A200C16A0D = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +117,8 @@
 		D4F102E3256511A200C16A0D /* Stock Search */ = {
 			isa = PBXGroup;
 			children = (
+				D485FCBB256AA9C200390E54 /* Models */,
+				D485FCB7256AA91B00390E54 /* TestResources */,
 				D4F102E4256511A200C16A0D /* AppDelegate.swift */,
 				D4F102E6256511A200C16A0D /* SceneDelegate.swift */,
 				D4F102E8256511A200C16A0D /* ContentView.swift */,
@@ -106,6 +126,8 @@
 				D4F102EF256511A500C16A0D /* LaunchScreen.storyboard */,
 				D4F102F2256511A500C16A0D /* Info.plist */,
 				D4F102EC256511A500C16A0D /* Preview Content */,
+				D485FCAA256AA8DE00390E54 /* StockRow.swift */,
+				D485FCB2256AA90300390E54 /* StockList.swift */,
 			);
 			path = "Stock Search";
 			sourceTree = "<group>";
@@ -267,8 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F102E5256511A200C16A0D /* AppDelegate.swift in Sources */,
+				D485FCAB256AA8DE00390E54 /* StockRow.swift in Sources */,
 				D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */,
 				D4F102E9256511A200C16A0D /* ContentView.swift in Sources */,
+				D485FCB3256AA90300390E54 /* StockList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
