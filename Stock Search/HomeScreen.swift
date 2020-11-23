@@ -1,20 +1,28 @@
 //
-//  StockList.swift
+//  HomeScreen.swift
 //  Stock Search
 //
-//  Created by 陈冲 on 11/22/20.
+//  Created by 陈冲 on 11/23/20.
 //
 
 import SwiftUI
 
-struct StockList: View {
+struct HomeScreen: View {
     @State var date = Date()
     
     var body: some View {
         NavigationView {
-
             List {
+                Text("\(dateString(date: date))").font(.title2).fontWeight(.heavy).foregroundColor(Color.gray).onAppear(perform: {let _ = self.updateTimer})
+                
                 Section(header: Text("PORTFOLIO")) {
+                    VStack(alignment: .leading) {
+                        Text("Net Worth")
+                            .font(.title2)
+                        Text("2000.00")
+                            .font(.title2)
+                            .fontWeight(.heavy)
+                    }
                     NavigationLink(destination: StockDetails()) {
                         StockRow()
                     }
@@ -31,8 +39,8 @@ struct StockList: View {
                     }
                 }
             }
-            .navigationBarTitle(Text("\(dateString(date: date))")
-                                    ).onAppear(perform: {let _ = self.updateTimer})        }
+            .navigationBarTitle(Text("Stocks"))
+        }
     }
     
     var dateFormat: DateFormatter {
@@ -40,6 +48,8 @@ struct StockList: View {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "en_US")
+        formatter.setLocalizedDateFormatFromTemplate("MMMMd, yyyy")
+//      formatter.dateFormat = "hh:mm:ss a" // Test live time
         return formatter
     }
     
@@ -56,8 +66,8 @@ struct StockList: View {
     }
 }
 
-struct StockList_Previews: PreviewProvider {
+struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        StockList()
+        HomeScreen()
     }
 }
