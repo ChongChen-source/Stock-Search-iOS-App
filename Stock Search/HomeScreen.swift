@@ -10,7 +10,10 @@ import SwiftUI
 struct HomeScreen: View {
     @State var date = Date()
     
+    @ObservedObject var searchBar: SearchBar = SearchBar()
+    
     var body: some View {
+        
         NavigationView {
             List {
                 Text("\(dateString(date: date))").font(.title2).fontWeight(.heavy).foregroundColor(Color.gray).onAppear(perform: {let _ = self.updateTimer})
@@ -40,6 +43,7 @@ struct HomeScreen: View {
                 }
             }
             .navigationBarTitle(Text("Stocks"))
+            .add(self.searchBar)
         }
     }
     
