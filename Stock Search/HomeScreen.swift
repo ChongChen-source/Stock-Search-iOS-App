@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var searchBar: SearchBar = SearchBar()
+    @StateObject private var portfolioList = PortfolioList(localStocks: testPortfolioList)
+    @StateObject private var favouritesList = FavouritesList(localStocks: testPortfolioList)
     
     var body: some View {
         NavigationView {
@@ -17,17 +19,38 @@ struct HomeScreen: View {
                 
                 Section(header: Text("PORTFOLIO")) {
                     NetWorthCell()
-                    StockRowCell()
-                    StockRowCell()
+                    ForEach(portfolioList.localStocks) { stock in
+                        StockRowCell(stock: stock)
+                    }
+                    .onMove(perform: moveStocks)
+                    .onDelete(perform: deleteStocks)
                 }
                 
                 Section(header: Text("FAVORITES")) {
-                    StockRowCell()
-                    StockRowCell()
+                    ForEach(favouritesList.localStocks) { stock in
+                        StockRowCell(stock: stock)
+                    }
+                    .onMove(perform: moveStocks)
+                    .onDelete(perform: deleteStocks)
                 }
             }
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
+            .toolbar {
+                EditButton()
+            }
+        }
+    }
+    
+    func moveStocks(from: IndexSet, to: Int) {
+        withAnimation {
+            portfolioList.localStocks.move(fromOffsets: from, toOffset: to)
+        }
+    }
+
+    func deleteStocks(offsets: IndexSet) {
+        withAnimation {
+            portfolioList.localStocks.remove(atOffsets: offsets)
         }
     }
 }
@@ -39,9 +62,10 @@ struct HomeScreen_Previews: PreviewProvider {
 }
 
 struct StockRowCell: View {
+    var stock: LocalStockInfo
     var body: some View {
         NavigationLink(destination: StockDetails()) {
-            StockRow()
+            StockRow(stock: stock)
         }
     }
 }

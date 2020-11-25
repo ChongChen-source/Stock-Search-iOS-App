@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "ticker": "AAPL",
+        "companyName": "Apple Inc."
+    },
+    {
+        "id": 1,
+        "ticker": "TSLA",
+        "companyName": "Tesla Inc."
+    }
+]

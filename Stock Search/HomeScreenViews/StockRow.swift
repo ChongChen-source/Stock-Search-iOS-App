@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct StockRow: View {
-    
+    var stock: LocalStockInfo
     var body: some View {
-        Text("Stock Row")
+        Text(stock.ticker)
     }
 }
 
 struct StockRow_Previews: PreviewProvider {
     static var previews: some View {
-        StockRow()
+        StockRow(stock: testPortfolioList[0])
     }
 }
