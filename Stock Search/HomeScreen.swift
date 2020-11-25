@@ -8,43 +8,65 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @State var date = Date()
-    
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
     var body: some View {
-        
         NavigationView {
             List {
-                Text("\(dateString(date: date))").font(.title2).fontWeight(.heavy).foregroundColor(Color.gray).onAppear(perform: {let _ = self.updateTimer})
+                CurrDateCell()
                 
                 Section(header: Text("PORTFOLIO")) {
-                    VStack(alignment: .leading) {
-                        Text("Net Worth")
-                            .font(.title2)
-                        Text("2000.00")
-                            .font(.title2)
-                            .fontWeight(.heavy)
-                    }
-                    NavigationLink(destination: StockDetails()) {
-                        StockRow()
-                    }
-                    NavigationLink(destination: StockDetails()) {
-                        StockRow()
-                    }
+                    NetWorthCell()
+                    StockRowCell()
+                    StockRowCell()
                 }
+                
                 Section(header: Text("FAVORITES")) {
-                    NavigationLink(destination: StockDetails()) {
-                        StockRow()
-                    }
-                    NavigationLink(destination: StockDetails()) {
-                        StockRow()
-                    }
+                    StockRowCell()
+                    StockRowCell()
                 }
             }
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
         }
+    }
+}
+
+struct HomeScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeScreen()
+    }
+}
+
+struct StockRowCell: View {
+    var body: some View {
+        NavigationLink(destination: StockDetails()) {
+            StockRow()
+        }
+    }
+}
+
+struct NetWorthCell: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Net Worth")
+                .font(.title2)
+            Text("2000.00")
+                .font(.title2)
+                .fontWeight(.heavy)
+        }
+    }
+}
+
+struct CurrDateCell: View {
+    @State var date = Date()
+    var body: some View {
+        Text("\(dateString(date: date))").font(.title2).fontWeight(.heavy).foregroundColor(Color.gray).onAppear(perform: {let _ = self.updateTimer})
+    }
+    
+    func dateString(date: Date) -> String {
+         let time = dateFormat.string(from: date)
+         return time
     }
     
     var dateFormat: DateFormatter {
@@ -57,21 +79,10 @@ struct HomeScreen: View {
         return formatter
     }
     
-    func dateString(date: Date) -> String {
-         let time = dateFormat.string(from: date)
-         return time
-    }
-    
     var updateTimer: Timer {
          Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
                               block: {_ in
                                  self.date = Date()
                                })
-    }
-}
-
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
     }
 }
