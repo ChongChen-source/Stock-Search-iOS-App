@@ -11,4 +11,6 @@ struct BasicStockInfo: Hashable, Codable, Identifiable {
     var id: Int
     var ticker: String
     var name: String
+    var isBought: Bool
+    var sharesBought: Double
 }
