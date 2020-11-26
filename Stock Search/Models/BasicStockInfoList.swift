@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StockInfoList: ObservableObject {
+class BasicStockInfoList: ObservableObject {
     @Published var localStocks: [BasicStockInfo]
     
     init(localStocks: [BasicStockInfo] = []) {

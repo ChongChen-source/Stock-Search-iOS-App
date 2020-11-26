@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var searchBar: SearchBar = SearchBar()
-    @StateObject private var portfolioList = StockInfoList(localStocks: testPortfolioList)
-    @StateObject private var favouritesList = StockInfoList(localStocks: testPortfolioList)
+    @StateObject private var portfolioList = BasicStockInfoList(localStocks: testPortfolioList)
+    @StateObject private var favouritesList = BasicStockInfoList(localStocks: testPortfolioList)
     
     var body: some View {
         NavigationView {
