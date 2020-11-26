@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct StockDetails: View {
+    var ticker: String
     var body: some View {
-        Text("Details!")
+        Text(ticker)
     }
 }
 
 struct StockDetails_Previews: PreviewProvider {
     static var previews: some View {
-        StockDetails()
+        StockDetails(ticker: "ticker")
     }
 }
