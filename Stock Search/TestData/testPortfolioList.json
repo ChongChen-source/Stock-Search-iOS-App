@@ -2,11 +2,11 @@
     {
         "id": 0,
         "ticker": "AAPL",
-        "companyName": "Apple Inc."
+        "name": "Apple Inc."
     },
     {
         "id": 1,
         "ticker": "TSLA",
-        "companyName": "Tesla Inc."
+        "name": "Tesla Inc."
     }
 ]

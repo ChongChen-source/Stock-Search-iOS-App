@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StockRow: View {
-    var stock: LocalStockInfo
+    var stock: BasicStockInfo
     var body: some View {
         Text(stock.ticker)
     }

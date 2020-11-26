@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var searchBar: SearchBar = SearchBar()
-    @StateObject private var portfolioList = LocalStockList(localStocks: testPortfolioList)
-    @StateObject private var favouritesList = LocalStockList(localStocks: testPortfolioList)
+    @StateObject private var portfolioList = StockInfoList(localStocks: testPortfolioList)
+    @StateObject private var favouritesList = StockInfoList(localStocks: testPortfolioList)
     
     var body: some View {
         NavigationView {
@@ -74,7 +74,7 @@ struct HomeScreen_Previews: PreviewProvider {
 }
 
 struct StockRowCell: View {
-    var stock: LocalStockInfo
+    var stock: BasicStockInfo
     var body: some View {
         NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
             StockRow(stock: stock)

@@ -7,10 +7,10 @@
 
 import Foundation
 
-class LocalStockList: ObservableObject {
-    @Published var localStocks: [LocalStockInfo]
+class StockInfoList: ObservableObject {
+    @Published var localStocks: [BasicStockInfo]
     
-    init(localStocks: [LocalStockInfo] = []) {
+    init(localStocks: [BasicStockInfo] = []) {
         self.localStocks = localStocks
     }
 }

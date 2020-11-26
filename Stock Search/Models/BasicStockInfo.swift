@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct LocalStockInfo: Hashable, Codable, Identifiable {
+struct BasicStockInfo: Hashable, Codable, Identifiable {
     var id: Int
     var ticker: String
-    var companyName: String
+    var name: String
 }
