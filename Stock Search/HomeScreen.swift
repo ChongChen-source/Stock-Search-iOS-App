@@ -33,6 +33,8 @@ struct HomeScreen: View {
                     .onMove(perform: moveFavouritesStocks)
                     .onDelete(perform: deleteFavouritesStocks)
                 }
+                
+                TiingoLinkCell()
             }
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
@@ -120,5 +122,17 @@ struct CurrDateCell: View {
                               block: {_ in
                                  self.date = Date()
                                })
+    }
+}
+
+struct TiingoLinkCell: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            Link("Powered by Tiingo", destination: URL(string: "https://www.tiingo.com")!)
+                .foregroundColor(Color.gray)
+                .font(.footnote)
+            Spacer()
+        }
     }
 }
