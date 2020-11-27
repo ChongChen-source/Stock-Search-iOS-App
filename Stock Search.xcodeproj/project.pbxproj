@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4537F59257002BB00ABAC1D /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4537F58257002BB00ABAC1D /* LatestPriceInfo.swift */; };
 		D485FCAB256AA8DE00390E54 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCAA256AA8DE00390E54 /* StockRow.swift */; };
 		D485FCE0256AC2A800390E54 /* StockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCDF256AC2A800390E54 /* StockDetails.swift */; };
 		D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCEA256B984F00390E54 /* HomeScreen.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D4537F58257002BB00ABAC1D /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
 		D485FCAA256AA8DE00390E54 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
 		D485FCDF256AC2A800390E54 /* StockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetails.swift; sourceTree = "<group>"; };
 		D485FCEA256B984F00390E54 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				D4BAA4EB256EC3BE0088F042 /* Data.swift */,
 				D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */,
 				D4BAA50E256F896C0088F042 /* BasicStockInfoList.swift */,
+				D4537F58257002BB00ABAC1D /* LatestPriceInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */,
 				D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */,
 				D485FCE0256AC2A800390E54 /* StockDetails.swift in Sources */,
+				D4537F59257002BB00ABAC1D /* LatestPriceInfo.swift in Sources */,
 				D4BAA50F256F896C0088F042 /* BasicStockInfoList.swift in Sources */,
 				D4FF7FEB256E76650054C969 /* SearchBar.swift in Sources */,
 			);

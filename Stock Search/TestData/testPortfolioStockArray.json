@@ -12,5 +12,12 @@
         "name": "Tesla Inc.",
         "isBought": false,
         "sharesBought": 0
+    },
+    {
+        "id": 2,
+        "ticker": "AMZN",
+        "name": "Amazon",
+        "isBought": false,
+        "sharesBought": 0
     }
 ]

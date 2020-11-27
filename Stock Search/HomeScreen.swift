@@ -23,7 +23,7 @@ struct HomeScreen: View {
                         StockRowCell(stock: stock)
                     }
                     .onMove(perform: movePortfolioStocks)
-                    .onDelete(perform: deletePortfolioStocks)
+//                    .onDelete(perform: deletePortfolioStocks)
                 }
                 
                 Section(header: Text("FAVORITES")) {
@@ -50,11 +50,11 @@ struct HomeScreen: View {
         }
     }
 
-    func deletePortfolioStocks(offsets: IndexSet) {
-        withAnimation {
-            portfolioList.localStocks.remove(atOffsets: offsets)
-        }
-    }
+//    func deletePortfolioStocks(offsets: IndexSet) {
+//        withAnimation {
+//            portfolioList.localStocks.remove(atOffsets: offsets)
+//        }
+//    }
     
     func moveFavouritesStocks(from: IndexSet, to: Int) {
         withAnimation {
@@ -113,7 +113,7 @@ struct CurrDateCell: View {
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "en_US")
         formatter.setLocalizedDateFormatFromTemplate("MMMMd, yyyy")
-//      formatter.dateFormat = "hh:mm:ss a" // Test live time
+//        formatter.dateFormat = "hh:mm:ss a" // Test live time
         return formatter
     }
     
