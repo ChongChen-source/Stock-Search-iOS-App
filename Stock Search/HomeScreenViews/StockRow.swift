@@ -1,8 +1,8 @@
 //
-//  StockRow.swift
+//  StockRowCell.swift
 //  Stock Search
 //
-//  Created by 陈冲 on 11/22/20.
+//  Created by 陈冲 on 11/27/20.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ struct StockRow: View {
         HStack {
             BasicStockInfoCell(stock: stock)
             Spacer()
-            LatestPriceCell(lastestPriceInfo: getLatestPriceInfo())
+            LatestPriceInfoCell(lastestPriceInfo: getLatestPriceInfo())
         }
     }
     
@@ -25,10 +25,9 @@ struct StockRow: View {
             }
         }
         return LatestPriceInfo(ticker: "Unfound", lastPrice: 0, change: 0)
-    }
-}
+    }}
 
-struct StockRow_Previews: PreviewProvider {
+struct StockRowCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             StockRow(stock: testPortfolioStockArray[0])
@@ -58,8 +57,8 @@ struct BasicStockInfoCell: View {
     }
 }
 
-struct LatestPriceCell: View {
-    var lastestPriceInfo: LatestPriceInfo
+struct LatestPriceInfoCell: View {
+    @State var lastestPriceInfo: LatestPriceInfo
     
     var body: some View {
         VStack(alignment: .trailing) {

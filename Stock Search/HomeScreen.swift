@@ -9,8 +9,11 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var searchBar: SearchBar = SearchBar()
-    @StateObject private var portfolioList = BasicStockInfoList(localStocks: testPortfolioStockArray)
-    @StateObject private var favouritesList = BasicStockInfoList(localStocks: testPortfolioStockArray)
+    
+    @ObservedObject private var portfolioList = BasicStockInfoList(localStocks: testPortfolioStockArray)
+    @ObservedObject private var favouritesList = BasicStockInfoList(localStocks: testPortfolioStockArray)
+    
+    @AppStorage("netWorth") var netWorth: Double = 2000
     
     var body: some View {
         NavigationView {
@@ -18,9 +21,11 @@ struct HomeScreen: View {
                 CurrDateCell()
                 
                 Section(header: Text("PORTFOLIO")) {
-                    NetWorthCell()
+                    NetWorthCell(netWorth: netWorth)
                     ForEach(portfolioList.localStocks) { stock in
-                        StockRowCell(stock: stock)
+                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+                            StockRow(stock: stock)
+                        }
                     }
                     .onMove(perform: movePortfolioStocks)
 //                    .onDelete(perform: deletePortfolioStocks)
@@ -28,7 +33,9 @@ struct HomeScreen: View {
                 
                 Section(header: Text("FAVORITES")) {
                     ForEach(favouritesList.localStocks) { stock in
-                        StockRowCell(stock: stock)
+                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+                            StockRow(stock: stock)
+                        }
                     }
                     .onMove(perform: moveFavouritesStocks)
                     .onDelete(perform: deleteFavouritesStocks)
@@ -75,53 +82,16 @@ struct HomeScreen_Previews: PreviewProvider {
     }
 }
 
-struct StockRowCell: View {
-    var stock: BasicStockInfo
-    var body: some View {
-        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
-            StockRow(stock: stock)
-        }
-    }
-}
-
 struct NetWorthCell: View {
+    @State var netWorth: Double
     var body: some View {
         VStack(alignment: .leading) {
             Text("Net Worth")
                 .font(.title2)
-            Text("2000.00")
+            Text("\(netWorth, specifier: "%.2f")")
                 .font(.title2)
                 .fontWeight(.heavy)
         }
-    }
-}
-
-struct CurrDateCell: View {
-    @State var date = Date()
-    var body: some View {
-        Text("\(dateString(date: date))").font(.title2).fontWeight(.heavy).foregroundColor(Color.gray).onAppear(perform: {let _ = self.updateTimer})
-    }
-    
-    func dateString(date: Date) -> String {
-         let time = dateFormat.string(from: date)
-         return time
-    }
-    
-    var dateFormat: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.setLocalizedDateFormatFromTemplate("MMMMd, yyyy")
-//        formatter.dateFormat = "hh:mm:ss a" // Test live time
-        return formatter
-    }
-    
-    var updateTimer: Timer {
-         Timer.scheduledTimer(withTimeInterval: 1, repeats: true,
-                              block: {_ in
-                                 self.date = Date()
-                               })
     }
 }
 

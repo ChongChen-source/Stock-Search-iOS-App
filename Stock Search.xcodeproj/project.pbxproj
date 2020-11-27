@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D4537F59257002BB00ABAC1D /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4537F58257002BB00ABAC1D /* LatestPriceInfo.swift */; };
-		D485FCAB256AA8DE00390E54 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCAA256AA8DE00390E54 /* StockRow.swift */; };
+		D45B52A42571297F000EE1B1 /* CurrDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B52A32571297F000EE1B1 /* CurrDateCell.swift */; };
+		D45B52A9257129CE000EE1B1 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B52A8257129CE000EE1B1 /* StockRow.swift */; };
 		D485FCE0256AC2A800390E54 /* StockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCDF256AC2A800390E54 /* StockDetails.swift */; };
 		D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485FCEA256B984F00390E54 /* HomeScreen.swift */; };
 		D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA48B256E7C130088F042 /* ViewControllerResolver.swift */; };
@@ -44,7 +45,8 @@
 
 /* Begin PBXFileReference section */
 		D4537F58257002BB00ABAC1D /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
-		D485FCAA256AA8DE00390E54 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
+		D45B52A32571297F000EE1B1 /* CurrDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrDateCell.swift; sourceTree = "<group>"; };
+		D45B52A8257129CE000EE1B1 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
 		D485FCDF256AC2A800390E54 /* StockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetails.swift; sourceTree = "<group>"; };
 		D485FCEA256B984F00390E54 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		D4BAA48B256E7C130088F042 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
@@ -95,7 +97,8 @@
 		D485FCDA256AC13D00390E54 /* HomeScreenViews */ = {
 			isa = PBXGroup;
 			children = (
-				D485FCAA256AA8DE00390E54 /* StockRow.swift */,
+				D45B52A8257129CE000EE1B1 /* StockRow.swift */,
+				D45B52A32571297F000EE1B1 /* CurrDateCell.swift */,
 				D4FF7FEA256E76650054C969 /* SearchBar.swift */,
 				D4BAA48B256E7C130088F042 /* ViewControllerResolver.swift */,
 			);
@@ -324,7 +327,8 @@
 			files = (
 				D4F102E5256511A200C16A0D /* AppDelegate.swift in Sources */,
 				D4BAA4EC256EC3BE0088F042 /* Data.swift in Sources */,
-				D485FCAB256AA8DE00390E54 /* StockRow.swift in Sources */,
+				D45B52A42571297F000EE1B1 /* CurrDateCell.swift in Sources */,
+				D45B52A9257129CE000EE1B1 /* StockRow.swift in Sources */,
 				D4BAA4B4256EB6A80088F042 /* BasicStockInfo.swift in Sources */,
 				D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */,
 				D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */,
@@ -501,7 +505,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ChongChen.Stock-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -522,7 +526,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ChongChen.Stock-Search";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
