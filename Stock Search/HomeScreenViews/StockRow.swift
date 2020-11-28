@@ -30,9 +30,9 @@ struct StockRow: View {
 struct StockRowCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StockRow(stock: testPortfolioStockArray[0])
-            StockRow(stock: testPortfolioStockArray[1])
-            StockRow(stock: testPortfolioStockArray[2])
+            StockRow(stock: testStocks[0])
+            StockRow(stock: testStocks[1])
+            StockRow(stock: testStocks[2])
         }
         .previewLayout(.fixed(width: 400, height: 80))
     }

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @AppStorage("netWorth") var netWorth: Double = 2000
+    
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
-    @ObservedObject private var portfolioList = BasicStockInfoList(localStocks: testPortfolioStockArray)
-    @ObservedObject private var favouritesList = BasicStockInfoList(localStocks: testPortfolioStockArray)
-    
-    @AppStorage("netWorth") var netWorth: Double = 2000
+    @ObservedObject var portfolioList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: "portfolioList"))
+    @ObservedObject var favouritesList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: "favouritesList"))
     
     var body: some View {
         NavigationView {
@@ -28,7 +28,6 @@ struct HomeScreen: View {
                         }
                     }
                     .onMove(perform: movePortfolioStocks)
-//                    .onDelete(perform: deletePortfolioStocks)
                 }
                 
                 Section(header: Text("FAVORITES")) {
@@ -40,7 +39,6 @@ struct HomeScreen: View {
                     .onMove(perform: moveFavouritesStocks)
                     .onDelete(perform: deleteFavouritesStocks)
                 }
-                
                 TiingoLinkCell()
             }
             .navigationBarTitle(Text("Stocks"))
@@ -54,30 +52,28 @@ struct HomeScreen: View {
     func movePortfolioStocks(from: IndexSet, to: Int) {
         withAnimation {
             portfolioList.localStocks.move(fromOffsets: from, toOffset: to)
+            setLocalStocks(localStocks: portfolioList.localStocks, listName: "portfolioList")
         }
     }
-
-//    func deletePortfolioStocks(offsets: IndexSet) {
-//        withAnimation {
-//            portfolioList.localStocks.remove(atOffsets: offsets)
-//        }
-//    }
     
     func moveFavouritesStocks(from: IndexSet, to: Int) {
         withAnimation {
             favouritesList.localStocks.move(fromOffsets: from, toOffset: to)
+//            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
         }
     }
 
     func deleteFavouritesStocks(offsets: IndexSet) {
         withAnimation {
             favouritesList.localStocks.remove(atOffsets: offsets)
+            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
         }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
+//        HomeScreen(portfolioList: BasicStockInfoList(localStocks: testStocks), favouritesList: BasicStockInfoList(localStocks: testStocks))
         HomeScreen()
     }
 }

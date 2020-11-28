@@ -8,7 +8,7 @@
 import Foundation
 
 struct BasicStockInfo: Hashable, Codable, Identifiable {
-    var id: Int
+    var id = UUID()
     var ticker: String
     var name: String
     var isBought: Bool

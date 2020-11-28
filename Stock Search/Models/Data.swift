@@ -8,9 +8,15 @@ import UIKit
 import SwiftUI
 import Foundation
 
+//var portfolioStocks: [BasicStockInfo] = userDefaults.object(forKey: "portfolioStocks") as? [BasicStockInfo] ??
+
 let backendServerUrl: String = "http://csci571-hw8-web-app.us-east-1.elasticbeanstalk.com"
 
-let testPortfolioStockArray: [BasicStockInfo] = load("testPortfolioStockArray.json")
+let testStocks: [BasicStockInfo] = [
+    BasicStockInfo(ticker: "AAPL", name: "Apple", isBought: false, sharesBought: 0),
+    BasicStockInfo(ticker: "AMZN", name: "Amazon", isBought: true, sharesBought: 10.25687),
+    BasicStockInfo(ticker: "TSLA", name: "Tesla", isBought: false, sharesBought: 0)
+]
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
