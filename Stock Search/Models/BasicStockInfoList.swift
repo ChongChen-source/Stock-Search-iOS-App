@@ -8,10 +8,12 @@
 import Foundation
 
 class BasicStockInfoList: ObservableObject {
-    @Published var localStocks: [BasicStockInfo]
+    @Published var portfolioStocks: [BasicStockInfo]
+    @Published var favoritesStocks: [BasicStockInfo]
     
-    init(localStocks: [BasicStockInfo] = []) {
-        self.localStocks = localStocks
+    init(portfolioStocks: [BasicStockInfo] = [], favoritesStocks: [BasicStockInfo] = []) {
+        self.portfolioStocks = portfolioStocks
+        self.favoritesStocks = favoritesStocks
     }
 }
 

@@ -12,13 +12,9 @@ struct HomeScreen: View {
     
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
-    @ObservedObject var portfolioList: BasicStockInfoList
+    @EnvironmentObject var localLists: BasicStockInfoList
     
-    @ObservedObject var favoritesList: BasicStockInfoList
-    
-    @State var favoritesStocks: [BasicStockInfo]
-    
-    @ObservedObject var testList: BasicStockInfoList = BasicStockInfoList(localStocks:testStocks)
+    @State var favoritesStocks: [BasicStockInfo] = testStocks
     
     var body: some View {
         NavigationView {
@@ -27,7 +23,7 @@ struct HomeScreen: View {
                 
                 Section(header: Text("PORTFOLIO")) {
                     NetWorthCell(netWorth: netWorth)
-                    ForEach(portfolioList.localStocks) { stock in
+                    ForEach(localLists.portfolioStocks) { stock in
                         NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
                             StockRow(stock: stock)
                         }
@@ -36,7 +32,7 @@ struct HomeScreen: View {
                 }
                 
                 Section(header: Text("FAVORITES")) {
-                    ForEach(getLocalStocks(listName: listNameFavorites)) { stock in
+                    ForEach(localLists.favoritesStocks) { stock in
                         NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
                             StockRow(stock: stock)
                         }
@@ -46,18 +42,8 @@ struct HomeScreen: View {
                 }
                 TiingoLinkCell()
                 
-                Section(header: Text("ARRAY")) {
-                    ForEach(favoritesStocks) { stock in
-                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
-                            StockRow(stock: stock)
-                        }
-                    }
-                    .onMove(perform: moveFavoritesStocks)
-                    .onDelete(perform: deleteFavoritesStocks)
-                }
-                
                 Section(header: Text("TESTS")) {
-                    ForEach(testList.localStocks) { stock in
+                    ForEach(testStocks) { stock in
                         NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
                             StockRow(stock: stock)
                         }
@@ -76,29 +62,29 @@ struct HomeScreen: View {
     
     func movePortfolioStocks(from: IndexSet, to: Int) {
         withAnimation {
-            portfolioList.localStocks.move(fromOffsets: from, toOffset: to)
-            setLocalStocks(localStocks: portfolioList.localStocks, listName: listNamePortfolio)
+            localLists.portfolioStocks.move(fromOffsets: from, toOffset: to)
+            setLocalStocks(localStocks: localLists.portfolioStocks, listName: listNamePortfolio)
         }
     }
     
     func moveFavoritesStocks(from: IndexSet, to: Int) {
         withAnimation {
-            favoritesList.localStocks.move(fromOffsets: from, toOffset: to)
-            setLocalStocks(localStocks: favoritesList.localStocks, listName: listNameFavorites)
+            localLists.favoritesStocks.move(fromOffsets: from, toOffset: to)
+            setLocalStocks(localStocks: localLists.favoritesStocks, listName: listNameFavorites)
         }
     }
 
     func deleteFavoritesStocks(offsets: IndexSet) {
         withAnimation {
-            favoritesList.localStocks.remove(atOffsets: offsets)
-            setLocalStocks(localStocks: favoritesList.localStocks, listName: listNameFavorites)
+            localLists.favoritesStocks.remove(atOffsets: offsets)
+            setLocalStocks(localStocks: localLists.favoritesStocks, listName: listNameFavorites)
         }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen(portfolioList: BasicStockInfoList(localStocks: getLocalStocks(listName: listNamePortfolio)), favoritesList: BasicStockInfoList(localStocks: getLocalStocks(listName: listNameFavorites)), favoritesStocks: getLocalStocks(listName: listNameFavorites))
+        HomeScreen()
     }
 }
 

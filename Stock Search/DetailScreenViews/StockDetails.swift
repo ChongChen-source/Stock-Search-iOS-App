@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StockDetails: View {
+    @EnvironmentObject var localLists: BasicStockInfoList
     @State var ticker: String
     
     var body: some View {
@@ -28,6 +29,7 @@ struct StockDetails_Previews: PreviewProvider {
 }
 
 struct FavouritesButton: View {
+    @EnvironmentObject var localLists: BasicStockInfoList
     @State var stock: BasicStockInfo
     var body: some View {
         Button(action: {
@@ -35,6 +37,7 @@ struct FavouritesButton: View {
             var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
             if stock.isFavorited {
                 favoritesList.append(stock)
+                localLists.favoritesStocks = favoritesList
                 setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
             } else {
                 if favoritesList.isEmpty {
@@ -48,6 +51,7 @@ struct FavouritesButton: View {
                     }
                 }
                 favoritesList.remove(at: index)
+                localLists.favoritesStocks = favoritesList
                 setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
             }
         }){

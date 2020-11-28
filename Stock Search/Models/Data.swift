@@ -12,8 +12,6 @@ import Foundation
 
 let backendServerUrl: String = "http://csci571-hw8-web-app.us-east-1.elasticbeanstalk.com"
 
-let favoritesStocks = getLocalStocks(listName: listNameFavorites)
-
 let listNamePortfolio: String = "portfolioList"
 let listNameFavorites: String = "favoritesList"
 
