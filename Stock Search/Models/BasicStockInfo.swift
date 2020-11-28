@@ -13,7 +13,24 @@ struct BasicStockInfo: Hashable, Codable, Identifiable {
     var name: String
     var isBought: Bool
     var sharesBought: Double
-    var isFavourited: Bool
+    var isFavorited: Bool
+}
+
+func setLocalStocks(localStocks: [BasicStockInfo], listName: String) -> Void {
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(localStocks) {
+        UserDefaults.standard.set(encoded, forKey: listName)
+    }
+}
+
+func getLocalStocks(listName: String) -> [BasicStockInfo] {
+    if let localStocks = UserDefaults.standard.object(forKey: listName) as? Data {
+        let decoder = JSONDecoder()
+        if let loadedStocks = try? decoder.decode([BasicStockInfo].self, from: localStocks) {
+            return loadedStocks
+        }
+    }
+    return []
 }
 
 func getBasicStockInfo(ticker: String) -> BasicStockInfo {
@@ -21,12 +38,12 @@ func getBasicStockInfo(ticker: String) -> BasicStockInfo {
                                                name: getDescriptionInfo(ticker: ticker).name,
                                                isBought: isBought(ticker: ticker),
                                                sharesBought: getSharesBought(ticker: ticker),
-                                               isFavourited: isFavourited(ticker: ticker))
+                                               isFavorited: isFavorited(ticker: ticker))
     return stock
 }
 
 func isBought(ticker: String) -> Bool {
-    let portfolioList: [BasicStockInfo] = getLocalStocks(listName: "portfolioList")
+    let portfolioList: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
     for stock in portfolioList {
         if ticker == stock.ticker {
             return true
@@ -36,7 +53,7 @@ func isBought(ticker: String) -> Bool {
 }
 
 func getSharesBought(ticker: String) -> Double {
-    let portfolioList: [BasicStockInfo] = getLocalStocks(listName: "portfolioList")
+    let portfolioList: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
     for stock in portfolioList {
         if ticker == stock.ticker {
             return stock.sharesBought
@@ -45,9 +62,9 @@ func getSharesBought(ticker: String) -> Double {
     return 0
 }
 
-func isFavourited(ticker: String) -> Bool {
-    let favouritesList: [BasicStockInfo] = getLocalStocks(listName: "favouritesList")
-    for stock in favouritesList {
+func isFavorited(ticker: String) -> Bool {
+    let favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+    for stock in favoritesList {
         if ticker == stock.ticker {
             return true
         }

@@ -31,27 +31,27 @@ struct FavouritesButton: View {
     @State var stock: BasicStockInfo
     var body: some View {
         Button(action: {
-            stock.isFavourited = !stock.isFavourited
-            var favouritesList: [BasicStockInfo] = getLocalStocks(listName: "favouritesList")
-            if stock.isFavourited {
-                favouritesList.append(stock)
-                setLocalStocks(localStocks: favouritesList, listName: "favouritesList")
+            stock.isFavorited = !stock.isFavorited
+            var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+            if stock.isFavorited {
+                favoritesList.append(stock)
+                setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
             } else {
-                if favouritesList.isEmpty {
+                if favoritesList.isEmpty {
                     return
                 }
                 var index = 0
-                for i in 0 ..< favouritesList.count {
-                    if stock.ticker == favouritesList[i].ticker{
+                for i in 0 ..< favoritesList.count {
+                    if stock.ticker == favoritesList[i].ticker{
                         index = i
                         break
                     }
                 }
-                favouritesList.remove(at: index)
-                setLocalStocks(localStocks: favouritesList, listName: "favouritesList")
+                favoritesList.remove(at: index)
+                setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
             }
         }){
-            Image(systemName: stock.isFavourited ? "plus.circle.fill" : "plus.circle")
+            Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
         }
     }
 }

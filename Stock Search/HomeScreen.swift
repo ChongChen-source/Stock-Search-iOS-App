@@ -12,8 +12,10 @@ struct HomeScreen: View {
     
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
-    @ObservedObject var portfolioList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: "portfolioList"))
-    @ObservedObject var favouritesList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: "favouritesList"))
+    @ObservedObject var portfolioList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: listNamePortfolio))
+    @ObservedObject var favoritesList: BasicStockInfoList = BasicStockInfoList(localStocks: getLocalStocks(listName: listNameFavorites))
+    
+//    @ObservedObject var testList: BasicStockInfoList = BasicStockInfoList(localStocks:testStocks)
     
     var body: some View {
         NavigationView {
@@ -31,15 +33,25 @@ struct HomeScreen: View {
                 }
                 
                 Section(header: Text("FAVORITES")) {
-                    ForEach(favouritesList.localStocks) { stock in
+                    ForEach(favoritesList.localStocks) { stock in
                         NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
                             StockRow(stock: stock)
                         }
                     }
-                    .onMove(perform: moveFavouritesStocks)
-                    .onDelete(perform: deleteFavouritesStocks)
+                    .onMove(perform: moveFavoritesStocks)
+                    .onDelete(perform: deleteFavoritesStocks)
                 }
                 TiingoLinkCell()
+                
+//                Section(header: Text("TESTS")) {
+//                    ForEach(testList.localStocks) { stock in
+//                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+//                            StockRow(stock: stock)
+//                        }
+//                    }
+//                    .onMove(perform: moveFavoritesStocks)
+//                    .onDelete(perform: deleteFavoritesStocks)
+//                }
             }
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
@@ -52,28 +64,27 @@ struct HomeScreen: View {
     func movePortfolioStocks(from: IndexSet, to: Int) {
         withAnimation {
             portfolioList.localStocks.move(fromOffsets: from, toOffset: to)
-            setLocalStocks(localStocks: portfolioList.localStocks, listName: "portfolioList")
+            setLocalStocks(localStocks: portfolioList.localStocks, listName: listNamePortfolio)
         }
     }
     
-    func moveFavouritesStocks(from: IndexSet, to: Int) {
+    func moveFavoritesStocks(from: IndexSet, to: Int) {
         withAnimation {
-            favouritesList.localStocks.move(fromOffsets: from, toOffset: to)
-            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
+            favoritesList.localStocks.move(fromOffsets: from, toOffset: to)
+            setLocalStocks(localStocks: favoritesList.localStocks, listName: listNameFavorites)
         }
     }
 
-    func deleteFavouritesStocks(offsets: IndexSet) {
+    func deleteFavoritesStocks(offsets: IndexSet) {
         withAnimation {
-            favouritesList.localStocks.remove(atOffsets: offsets)
-            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
+            favoritesList.localStocks.remove(atOffsets: offsets)
+            setLocalStocks(localStocks: favoritesList.localStocks, listName: listNameFavorites)
         }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-//        HomeScreen(portfolioList: BasicStockInfoList(localStocks: testStocks), favouritesList: BasicStockInfoList(localStocks: testStocks))
         HomeScreen()
     }
 }
