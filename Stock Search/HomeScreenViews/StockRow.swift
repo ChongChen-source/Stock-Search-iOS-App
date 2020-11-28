@@ -14,18 +14,10 @@ struct StockRow: View {
         HStack {
             BasicStockInfoCell(stock: stock)
             Spacer()
-            LatestPriceInfoCell(lastestPriceInfo: getLatestPriceInfo())
+            LatestPriceInfoCell(latestPriceInfo: getLatestPriceInfo(ticker: stock.ticker))
         }
     }
-    
-    func getLatestPriceInfo() -> LatestPriceInfo {
-        for info in testLatestPrices {
-            if stock.ticker == info.ticker {
-                return info
-            }
-        }
-        return LatestPriceInfo(ticker: "Unfound", lastPrice: 0, change: 0)
-    }}
+}
 
 struct StockRowCell_Previews: PreviewProvider {
     static var previews: some View {
@@ -58,32 +50,32 @@ struct BasicStockInfoCell: View {
 }
 
 struct LatestPriceInfoCell: View {
-    @State var lastestPriceInfo: LatestPriceInfo
+    @State var latestPriceInfo: LatestPriceInfo
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("\(lastestPriceInfo.lastPrice, specifier: "%.2f")")
+            Text("\(latestPriceInfo.lastPrice, specifier: "%.2f")")
                 .fontWeight(.bold)
             
             HStack {
-                if lastestPriceInfo.change > 0 {
+                if latestPriceInfo.change > 0 {
                     Image(systemName: "arrow.up.forward")
                 }
-                else if lastestPriceInfo.change < 0 {
+                else if latestPriceInfo.change < 0 {
                     Image(systemName: "arrow.down.forward")
                 }
                 
-                Text("\(lastestPriceInfo.change, specifier: "%.2f")")
+                Text("\(latestPriceInfo.change, specifier: "%.2f")")
             }
             .foregroundColor(getColor())
         }
     }
     
     func getColor() -> Color {
-        if lastestPriceInfo.change > 0 {
+        if latestPriceInfo.change > 0 {
             return Color.green
         }
-        else if lastestPriceInfo.change < 0 {
+        else if latestPriceInfo.change < 0 {
             return Color.red
         }
         else {

@@ -13,10 +13,13 @@ import Foundation
 let backendServerUrl: String = "http://csci571-hw8-web-app.us-east-1.elasticbeanstalk.com"
 
 let testStocks: [BasicStockInfo] = [
-    BasicStockInfo(ticker: "AAPL", name: "Apple", isBought: false, sharesBought: 0),
-    BasicStockInfo(ticker: "AMZN", name: "Amazon", isBought: true, sharesBought: 10.25687),
-    BasicStockInfo(ticker: "TSLA", name: "Tesla", isBought: false, sharesBought: 0)
+    BasicStockInfo(ticker: "AAPL", name: "Apple", isBought: false, sharesBought: 0, isFavourited: true),
+    BasicStockInfo(ticker: "AMZN", name: "Amazon", isBought: true, sharesBought: 10.25687, isFavourited: false),
+    BasicStockInfo(ticker: "TSLA", name: "Tesla", isBought: false, sharesBought: 0, isFavourited: false)
 ]
+
+let testCompanyDescriptionData: CompanyDescriptionAPI = load("testCompanyDescriptionData.json")
+let testLatestPriceData:  LatestPriceAPI = load("testLatestPriceData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

@@ -59,7 +59,7 @@ struct HomeScreen: View {
     func moveFavouritesStocks(from: IndexSet, to: Int) {
         withAnimation {
             favouritesList.localStocks.move(fromOffsets: from, toOffset: to)
-//            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
+            setLocalStocks(localStocks: favouritesList.localStocks, listName: "favouritesList")
         }
     }
 
