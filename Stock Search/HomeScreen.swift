@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @AppStorage("netWorth") var netWorth: Double = 2000
-    
     @ObservedObject var searchBar: SearchBar = SearchBar()
     
     @EnvironmentObject var localLists: BasicStockInfoList
     
     @State var favoritesStocks: [BasicStockInfo] = testStocks
+    
+    @State var netWorth: Double = 2000
     
     var body: some View {
         NavigationView {

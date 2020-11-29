@@ -16,6 +16,7 @@ struct StockDetails: View {
         NavigationView {
             VStack(alignment: .leading) {
                 DetailsHeadCell(latestPriceInfo: getLatestPriceInfo(ticker: stock.ticker), descriptionInfo: getDescriptionInfo(ticker: stock.ticker))
+                DetailsPortfolioCell(stock: stock)
                 DetailsStatsCell(statsInfo: getStatsInfo(ticker: stock.ticker))
                 DetailsAboutCell(description: getDescriptionInfo(ticker: stock.ticker).description)
                 Spacer()

@@ -14,6 +14,8 @@ let backendServerUrl: String = "http://csci571-hw8-web-app.us-east-1.elasticbean
 
 let listNamePortfolio: String = "portfolioList"
 let listNameFavorites: String = "favoritesList"
+let keyNameNetWorth: String = "netWorth"
+let keyNameAvailableWorth: String = "availableWorth"
 
 let testStocks: [BasicStockInfo] = [
     BasicStockInfo(ticker: "AAPL", name: "Apple", isBought: false, sharesBought: 0, isFavorited: true),
