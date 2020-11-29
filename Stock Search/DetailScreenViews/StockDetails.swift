@@ -49,12 +49,14 @@ struct StockDetails: View {
                 // update local storage
                 localLists.favoritesStocks = favoritesList
                 setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
+                // show toast
+                self.showToast = true
             }}){
                 Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
             }
         }
         .toast(isPresented: self.$showToast) {
-            Text("toast")
+            Text(stock.isFavorited ? "Adding \(stock.ticker) to Favorites" : "Removing \(stock.ticker) from Favorites")
         }
     }
 }
@@ -63,40 +65,5 @@ struct StockDetails: View {
 struct StockDetails_Previews: PreviewProvider {
     static var previews: some View {
         StockDetails(stock: getBasicStockInfo(ticker: "AAPL"))
-    }
-}
-
-struct FavouritesButton: View {
-    @EnvironmentObject var localLists: BasicStockInfoList
-    @State var stock: BasicStockInfo
-    var body: some View {
-        Button(action: withAnimation{{
-            // toggle the flag
-            stock.isFavorited.toggle()
-            // get local list
-            var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
-            
-            // case 1: add to the favorites list
-            if stock.isFavorited {
-                favoritesList.append(stock)
-            }
-            // case 2: remove from the favorites list
-            else if !favoritesList.isEmpty {
-                var indexes: [Int] = []
-                for (index, localStock) in favoritesList.enumerated() {
-                    if (localStock.ticker == stock.ticker) {
-                        indexes.append(index)
-                    }
-                }
-                for index in indexes {
-                    favoritesList.remove(at: index)
-                }
-            }
-            // update local storage
-            localLists.favoritesStocks = favoritesList
-            setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
-        }}){
-            Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
-        }
     }
 }
