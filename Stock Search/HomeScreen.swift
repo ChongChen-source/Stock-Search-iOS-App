@@ -24,7 +24,7 @@ struct HomeScreen: View {
                 Section(header: Text("PORTFOLIO")) {
                     NetWorthCell(netWorth: netWorth)
                     ForEach(localLists.portfolioStocks) { stock in
-                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
                             StockRow(stock: stock)
                         }
                     }
@@ -33,7 +33,7 @@ struct HomeScreen: View {
                 
                 Section(header: Text("FAVORITES")) {
                     ForEach(localLists.favoritesStocks) { stock in
-                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
                             StockRow(stock: stock)
                         }
                     }
@@ -44,7 +44,7 @@ struct HomeScreen: View {
                 
                 Section(header: Text("TESTS")) {
                     ForEach(testStocks) { stock in
-                        NavigationLink(destination: StockDetails(ticker: stock.ticker)) {
+                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
                             StockRow(stock: stock)
                         }
                     }
