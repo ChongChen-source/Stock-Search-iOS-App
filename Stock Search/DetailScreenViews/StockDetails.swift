@@ -39,27 +39,30 @@ struct FavouritesButton: View {
     @State var stock: BasicStockInfo
     var body: some View {
         Button(action: withAnimation{{
+            // toggle the flag
             stock.isFavorited = !stock.isFavorited
+            // get local list
             var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+            
+            // case 1: add to the favorites list
             if stock.isFavorited {
                 favoritesList.append(stock)
-                localLists.favoritesStocks = favoritesList
-                setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
-            } else {
-                if favoritesList.isEmpty {
-                    return
-                }
-                var index = 0
-                for i in 0 ..< favoritesList.count {
-                    if stock.ticker == favoritesList[i].ticker{
-                        index = i
-                        break
+            }
+            // case 2: remove from the favorites list
+            else if !favoritesList.isEmpty {
+                var indexes: [Int] = []
+                for (index, localStock) in favoritesList.enumerated() {
+                    if (localStock.ticker == stock.ticker) {
+                        indexes.append(index)
                     }
                 }
-                favoritesList.remove(at: index)
-                localLists.favoritesStocks = favoritesList
-                setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
+                for index in indexes {
+                    favoritesList.remove(at: index)
+                }
             }
+            // update local storage
+            localLists.favoritesStocks = favoritesList
+            setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
         }}){
             Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
         }
