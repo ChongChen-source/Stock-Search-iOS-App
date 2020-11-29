@@ -10,6 +10,8 @@ import SwiftUI
 struct StockDetails: View {
     @EnvironmentObject var localLists: BasicStockInfoList
     @State var ticker: String
+
+    @State var showToast: Bool = false
     
     var body: some View {
         NavigationView {
@@ -25,8 +27,12 @@ struct StockDetails: View {
         .toolbar {
             FavouritesButton(stock: getBasicStockInfo(ticker: ticker))
         }
+        .toast(isPresented: self.$showToast) {
+            Text("toast")
+        }
     }
 }
+
 
 struct StockDetails_Previews: PreviewProvider {
     static var previews: some View {
@@ -40,7 +46,7 @@ struct FavouritesButton: View {
     var body: some View {
         Button(action: withAnimation{{
             // toggle the flag
-            stock.isFavorited = !stock.isFavorited
+            stock.isFavorited.toggle()
             // get local list
             var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
             
