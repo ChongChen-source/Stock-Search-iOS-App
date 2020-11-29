@@ -21,6 +21,7 @@ struct DetailsStatsCell: View {
         VStack(alignment: .leading) {
             Text("Stats")
                 .font(.title2)
+                .padding(.vertical)
             ScrollView(.horizontal) {
                 LazyHGrid(rows: thressColumnGrid, spacing: 40) {
                     Text("Current Price: \(statsInfo.currPrice, specifier: "%.2f")")

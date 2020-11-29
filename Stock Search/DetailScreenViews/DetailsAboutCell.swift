@@ -16,6 +16,7 @@ struct DetailsAboutCell: View {
         VStack(alignment: .leading) {
             Text("About")
                 .font(.title2)
+                .padding(.vertical)
             Text(description)
                 .lineLimit( isExpanded ? nil: 2)
             HStack {

@@ -158,11 +158,11 @@
 				D485FCDF256AC2A800390E54 /* StockDetails.swift */,
 				D47E72072572681C002E51C4 /* DetailsHeadCell.swift */,
 				D487822E2573C43E009A0126 /* DetailsPortfolioCell.swift */,
+				D48782892573DEE6009A0126 /* TradeSheetView.swift */,
 				D47E725125727CD9002E51C4 /* DetailsStatsCell.swift */,
 				D47E731525733F48002E51C4 /* DetailsAboutCell.swift */,
 				D47E73682573499B002E51C4 /* DetailsNewsCell.swift */,
 				D487821D2573B97A009A0126 /* Toast.swift */,
-				D48782892573DEE6009A0126 /* TradeSheetView.swift */,
 			);
 			path = DetailScreenViews;
 			sourceTree = "<group>";

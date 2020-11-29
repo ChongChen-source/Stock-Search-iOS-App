@@ -14,6 +14,7 @@ struct DetailsPortfolioCell: View {
         VStack(alignment: .leading) {
             Text("Portfolio")
                 .font(.title2)
+                .padding(.vertical)
             HStack {
                 if stock.isBought {
                     VStack(alignment: .leading) {
@@ -39,7 +40,7 @@ struct DetailsPortfolioCell: View {
                         .cornerRadius(40)
                 }
                 .sheet(isPresented: $showTradeSheet) {
-                            TradeSheetView(showTradeSheet: $showTradeSheet)
+                            TradeSheetView(showTradeSheet: $showTradeSheet, stock: stock)
                         }
             }
         }
