@@ -11,15 +11,19 @@ struct DetailsHeadCell: View {
     @State var latestPriceInfo: LatestPriceInfo
     @State var descriptionInfo: DescriptionInfo
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(descriptionInfo.name)
-                .foregroundColor(Color.gray)
+        VStack {
+            HStack {
+                Text(descriptionInfo.name)
+                    .foregroundColor(Color.gray)
+                Spacer()
+            }
             HStack {
                 Text("$ \(latestPriceInfo.lastPrice, specifier: "%.2f")")
                     .font(.title)
                     .fontWeight(.bold)
                 Text("($ \(latestPriceInfo.change, specifier: "%.2f"))")
                     .foregroundColor(getColor())
+                Spacer()
             }
         }
     }

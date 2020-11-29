@@ -1,20 +1,20 @@
 [
     {
         "timestamp":"2020-11-27T21:00:00+00:00",
-        "bidSize":null,
+        "bidSize":0,
         "lastSaleTimestamp":"2020-11-27T21:00:00+00:00",
         "low":116.22,
-        "bidPrice":null,
+        "bidPrice":0,
         "prevClose":116.03,
         "quoteTimestamp":"2020-11-27T21:00:00+00:00",
         "last":116.59,
-        "askSize":null,
+        "askSize":0,
         "volume":46691331,
-        "lastSize":null,
+        "lastSize":0,
         "ticker":"AAPL",
         "high":117.49,
-        "mid":null,
-        "askPrice":null,
+        "mid":0,
+        "askPrice":0,
         "open":116.57,
         "tngoLast":116.59
     }

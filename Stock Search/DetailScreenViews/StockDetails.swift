@@ -13,7 +13,12 @@ struct StockDetails: View {
     
     var body: some View {
         NavigationView {
-            DetailsHeadCell(latestPriceInfo: getLatestPriceInfo(ticker: ticker), descriptionInfo: getDescriptionInfo(ticker: ticker))
+            LazyVStack {
+                DetailsHeadCell(latestPriceInfo: getLatestPriceInfo(ticker: ticker), descriptionInfo: getDescriptionInfo(ticker: ticker))
+                DetailsStatsCell(statsInfo: getStatsInfo(ticker: ticker))
+                DetailsAboutCell(description: getDescriptionInfo(ticker: ticker).description)
+                Spacer()
+            }
         }
         .navigationBarTitle(Text(ticker))
         .toolbar {

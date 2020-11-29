@@ -22,7 +22,7 @@ let testStocks: [BasicStockInfo] = [
 ]
 
 let testCompanyDescriptionData: CompanyDescriptionAPI = load("testCompanyDescriptionData.json")
-let testLatestPriceData:  LatestPriceAPI = load("testLatestPriceData.json")
+let testLatestPriceData:  [LatestPriceAPI] = load("testLatestPriceData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

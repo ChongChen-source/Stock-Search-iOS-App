@@ -20,7 +20,7 @@ struct StatsInfo: Hashable, Codable {
 
 func getStatsInfo(ticker: String) -> StatsInfo {
     // Call API
-    let fetchedData: LatestPriceAPI = testLatestPriceData
+    let fetchedData: LatestPriceAPI = testLatestPriceData[0]
     let info: StatsInfo = StatsInfo(ticker: ticker,
                                     currPrice: fetchedData.last,
                                     openPrice: fetchedData.open,
@@ -29,5 +29,6 @@ func getStatsInfo(ticker: String) -> StatsInfo {
                                     mid: fetchedData.mid,
                                     volume: fetchedData.volume,
                                     bidPrice: fetchedData.bidPrice)
+                    
     return info
 }
