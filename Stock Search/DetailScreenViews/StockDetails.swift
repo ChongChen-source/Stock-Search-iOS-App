@@ -13,12 +13,13 @@ struct StockDetails: View {
     
     var body: some View {
         NavigationView {
-            LazyVStack {
+            VStack(alignment: .leading) {
                 DetailsHeadCell(latestPriceInfo: getLatestPriceInfo(ticker: ticker), descriptionInfo: getDescriptionInfo(ticker: ticker))
                 DetailsStatsCell(statsInfo: getStatsInfo(ticker: ticker))
                 DetailsAboutCell(description: getDescriptionInfo(ticker: ticker).description)
                 Spacer()
             }
+            .padding(.horizontal)
         }
         .navigationBarTitle(Text(ticker))
         .toolbar {
@@ -37,7 +38,7 @@ struct FavouritesButton: View {
     @EnvironmentObject var localLists: BasicStockInfoList
     @State var stock: BasicStockInfo
     var body: some View {
-        Button(action: {
+        Button(action: withAnimation{{
             stock.isFavorited = !stock.isFavorited
             var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
             if stock.isFavorited {
@@ -59,7 +60,7 @@ struct FavouritesButton: View {
                 localLists.favoritesStocks = favoritesList
                 setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
             }
-        }){
+        }}){
             Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
         }
     }

@@ -85,6 +85,8 @@ struct HomeScreen: View {
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen()
+            .environmentObject(BasicStockInfoList(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
+                                                  favoritesStocks: getLocalStocks(listName: listNameFavorites)))
     }
 }
 

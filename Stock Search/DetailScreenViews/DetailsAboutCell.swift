@@ -20,7 +20,7 @@ struct DetailsAboutCell: View {
                 .lineLimit( isExpanded ? nil: 2)
             HStack {
                 Spacer()
-                Button(action: { self.isExpanded.toggle()} ) {
+                Button(action: {withAnimation{(self.isExpanded.toggle())}} ) {
                     Text(isExpanded ? "Show less" : "Show more...")
                         .foregroundColor(Color.gray)
                 }
