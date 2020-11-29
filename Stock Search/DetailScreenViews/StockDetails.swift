@@ -19,11 +19,13 @@ struct StockDetails: View {
                 DetailsPortfolioCell(stock: stock)
                 DetailsStatsCell(statsInfo: getStatsInfo(ticker: stock.ticker))
                 DetailsAboutCell(description: getDescriptionInfo(ticker: stock.ticker).description)
-                Spacer()
             }
             .padding(.horizontal)
+            .navigationBarTitle(Text(stock.ticker))
+            .toast(isPresented: self.$showToast) {
+                Text(stock.isFavorited ? "Adding \(stock.ticker) to Favorites" : "Removing \(stock.ticker) from Favorites")
+            }
         }
-        .navigationBarTitle(Text(stock.ticker))
         .toolbar {
             Button(action: withAnimation{{
                 // toggle the flag
@@ -55,9 +57,6 @@ struct StockDetails: View {
             }}){
                 Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
             }
-        }
-        .toast(isPresented: self.$showToast) {
-            Text(stock.isFavorited ? "Adding \(stock.ticker) to Favorites" : "Removing \(stock.ticker) from Favorites")
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailsPortfolioCell: View {
     @State var stock: BasicStockInfo
+    @State var showTradeSheet: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             Text("Portfolio")
@@ -27,8 +28,7 @@ struct DetailsPortfolioCell: View {
                 }
                 Spacer()
                 Button(action: withAnimation {{
-                    let flag = stock.isBought
-                    stock.isBought = flag
+                    self.showTradeSheet.toggle()
                 }}) {
                     Text("Trade")
                         .font(.title3)
@@ -38,6 +38,9 @@ struct DetailsPortfolioCell: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(40)
                 }
+                .sheet(isPresented: $showTradeSheet) {
+                            TradeSheetView(showTradeSheet: $showTradeSheet)
+                        }
             }
         }
     }
