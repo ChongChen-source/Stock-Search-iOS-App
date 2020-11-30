@@ -40,7 +40,7 @@ struct DetailsPortfolioCell: View {
                         .cornerRadius(40)
                 }
                 .sheet(isPresented: $showTradeSheet) {
-                            TradeSheetView(showTradeSheet: $showTradeSheet, stock: stock)
+                            TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock)
                         }
             }
         }

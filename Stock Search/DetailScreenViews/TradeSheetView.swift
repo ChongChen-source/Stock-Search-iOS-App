@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct TradeSheetView: View {
+    @EnvironmentObject var localLists: BasicStockInfoList
     @Binding var showTradeSheet: Bool
-    @State var stock: BasicStockInfo
+    @Binding var stock: BasicStockInfo
     
     @State var showBoughtView: Bool = false
     @State var showSoldView: Bool = false
+    @State var availableWorth: Double = getAvailableWorth()
     
     @State var input: String = ""
     
@@ -32,7 +34,7 @@ struct TradeSheetView: View {
                     VStack {
                         HStack {
                             TextField("0", text: $input)
-                                .keyboardType(.numberPad)
+                                .keyboardType(.decimalPad)
                                 .font(.system(size: 100))
                             Spacer()
                             Text("Share")
@@ -44,7 +46,7 @@ struct TradeSheetView: View {
                         }
                     }
                     Spacer()
-                    Text("$\(getAvailableWorth(), specifier: "%.2f") available to buy \(stock.ticker)")
+                    Text("$\(self.availableWorth, specifier: "%.2f") available to buy \(stock.ticker)")
                         .font(.footnote)
                         .foregroundColor(Color.gray)
                         .padding(.vertical)
@@ -57,7 +59,33 @@ struct TradeSheetView: View {
                                 } else if getNumInput() <= 0 {
                                     self.showErrorBuyNonpositiveShares = true
                                 } else {
-                                    // buy action
+                                    // update the available worth
+                                    self.availableWorth = getAvailableWorth() - getCalcWorth()
+                                    setAvailableWorth(availableWorth: self.availableWorth)
+                                    localLists.availableWorth = self.availableWorth
+                                    
+                                    // update the local portfolio
+                                    self.stock.sharesBought += getNumInput()
+                                    self.stock.isBought = true
+                                    var portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
+                                    if portfolioStocks.isEmpty {
+                                        portfolioStocks.append(stock)
+                                    } else {
+                                        var i: Int = -1
+                                        for (index, localStock) in portfolioStocks.enumerated() {
+                                            if (localStock.ticker == stock.ticker) {
+                                                i = index
+                                            }
+                                        }
+                                        if i != -1 {
+                                            portfolioStocks[i] = stock
+                                        }
+                                    }
+                                    localLists.portfolioStocks = portfolioStocks
+                                    setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
+                                    
+                                    // update the worth
+                                    updateNetWorth()
                                     self.showBoughtView.toggle()
                                 }
                             } else {
@@ -81,7 +109,35 @@ struct TradeSheetView: View {
                                 } else if getNumInput() <= 0 {
                                     self.showErrorSellNonpositiveShares = true
                                 } else {
-                                    // sell action
+                                    // update the available worth
+                                    self.availableWorth = getAvailableWorth() + getCalcWorth()
+                                    setAvailableWorth(availableWorth: self.availableWorth)
+                                    localLists.availableWorth = self.availableWorth
+                                    
+                                    // update the local portfolio
+                                    self.stock.sharesBought -= getNumInput()
+                                    if self.stock.sharesBought == 0 {
+                                        stock.isBought = false
+                                    }
+                                    var portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
+                                    var i: Int = -1
+                                    for (index, localStock) in portfolioStocks.enumerated() {
+                                        if (localStock.ticker == stock.ticker) {
+                                            i = index
+                                        }
+                                    }
+                                    if i != -1 {
+                                        if self.stock.sharesBought == 0 {
+                                            portfolioStocks.remove(at: i)
+                                        } else {
+                                            portfolioStocks[i] = stock
+                                        }
+                                    }
+                                    localLists.portfolioStocks = portfolioStocks
+                                    setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
+                                    
+                                    // update the worth
+                                    updateNetWorth()
                                     self.showSoldView.toggle()
                                 }
                             } else {
@@ -135,12 +191,22 @@ struct TradeSheetView: View {
                             .foregroundColor(Color.white)
                             .padding(.bottom)
                         if showBoughtView {
-                            Text("You have successfully bought 1.15 shares of \(stock.ticker)")
-                                .foregroundColor(Color.white)
+                            if (getNumInput() > 1) {
+                                Text("You have successfully bought \(getNumInput(), specifier: "%.2f") shares of \(stock.ticker)")
+                                    .foregroundColor(Color.white)
+                            } else {
+                                Text("You have successfully bought \(getNumInput(), specifier: "%.2f") share of \(stock.ticker)")
+                                    .foregroundColor(Color.white)
+                            }
                         }
                         else if showSoldView {
-                            Text("You have successfully sold 1 share of \(stock.ticker)")
-                                .foregroundColor(Color.white)
+                            if (getNumInput() > 1) {
+                                Text("You have successfully sold \(getNumInput(), specifier: "%.2f") shares of \(stock.ticker)")
+                                    .foregroundColor(Color.white)
+                            } else {
+                                Text("You have successfully sold \(getNumInput(), specifier: "%.2f") share of \(stock.ticker)")
+                                    .foregroundColor(Color.white)
+                            }
                         }
                         Spacer()
                         Button (action: withAnimation {{
@@ -185,6 +251,6 @@ struct TradeSheetView_Previews: PreviewProvider {
     @State static var showTradeSheet: Bool = false
     @State static var stock: BasicStockInfo = testStocks[0]
     static var previews: some View {
-        TradeSheetView(showTradeSheet: $showTradeSheet, stock: stock)
+        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock)
     }
 }

@@ -40,12 +40,6 @@ func getAvailableWorth() -> Double {
     return availableWorth
 }
 
-func updateNetWorth() -> Void {
-    let availableWorth: Double = getAvailableWorth()
-    let sharesWorth: Double = getSharesWorth()
-    setNetWorth(netWorth: availableWorth + sharesWorth)
-}
-
 func getSharesWorth() -> Double {
     var sharesWorth: Double = 0
     let portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
@@ -54,4 +48,10 @@ func getSharesWorth() -> Double {
         sharesWorth += latestPrice * stock.sharesBought
     }
     return sharesWorth
+}
+
+func updateNetWorth() -> Void {
+    let availableWorth: Double = getAvailableWorth()
+    let sharesWorth: Double = getSharesWorth()
+    setNetWorth(netWorth: availableWorth + sharesWorth)
 }
