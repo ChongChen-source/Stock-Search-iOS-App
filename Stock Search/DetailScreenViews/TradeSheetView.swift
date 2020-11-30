@@ -85,7 +85,6 @@ struct TradeSheetView: View {
                                     setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
                                     
                                     // update the worth
-                                    updateNetWorth()
                                     self.showBoughtView.toggle()
                                 }
                             } else {
@@ -137,7 +136,6 @@ struct TradeSheetView: View {
                                     setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
                                     
                                     // update the worth
-                                    updateNetWorth()
                                     self.showSoldView.toggle()
                                 }
                             } else {

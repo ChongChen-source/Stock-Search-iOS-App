@@ -14,7 +14,7 @@ struct HomeScreen: View {
     
     @State var favoritesStocks: [BasicStockInfo] = testStocks
     
-    @State var netWorth: Double = 2000
+    @State var netWorth: Double = getNetWorth()
     
     var body: some View {
         NavigationView {

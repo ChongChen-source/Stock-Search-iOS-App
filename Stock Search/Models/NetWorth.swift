@@ -15,18 +15,6 @@ extension UserDefaults {
 
 let initNetWorth: Double = 2000
 
-func setNetWorth(netWorth: Double) -> Void {
-    UserDefaults.standard.set(netWorth, forKey: keyNameNetWorth)
-}
-
-func getNetWorth() -> Double {
-    if UserDefaults.standard.valueExists(forKey: keyNameNetWorth) {
-        return UserDefaults.standard.double(forKey: keyNameNetWorth)
-    }
-    setNetWorth(netWorth: initNetWorth)
-    return initNetWorth
-}
-
 func setAvailableWorth(availableWorth: Double) -> Void {
     UserDefaults.standard.set(availableWorth, forKey: keyNameAvailableWorth)
 }
@@ -34,10 +22,10 @@ func setAvailableWorth(availableWorth: Double) -> Void {
 func getAvailableWorth() -> Double {
     if UserDefaults.standard.valueExists(forKey: keyNameAvailableWorth) {
         return UserDefaults.standard.double(forKey: keyNameAvailableWorth)
+    } else {
+        setAvailableWorth(availableWorth: initNetWorth)
+        return initNetWorth
     }
-    let availableWorth: Double = getNetWorth() - getSharesWorth()
-    setAvailableWorth(availableWorth: availableWorth)
-    return availableWorth
 }
 
 func getSharesWorth() -> Double {
@@ -50,8 +38,6 @@ func getSharesWorth() -> Double {
     return sharesWorth
 }
 
-func updateNetWorth() -> Void {
-    let availableWorth: Double = getAvailableWorth()
-    let sharesWorth: Double = getSharesWorth()
-    setNetWorth(netWorth: availableWorth + sharesWorth)
+func getNetWorth() -> Double {
+    return getAvailableWorth() + getSharesWorth()
 }
