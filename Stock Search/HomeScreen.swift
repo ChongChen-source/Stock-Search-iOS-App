@@ -16,44 +16,32 @@ struct HomeScreen: View {
     
     @State var netWorth: Double = getNetWorth()
     
-    @State var autocompleteStocks: [BasicStockInfo] = []
-    
     var body: some View {
         NavigationView {
             List {
                 if searchBar.text.isEmpty {
-                CurrDateCell()
+                    CurrDateCell()
 
-                Section(header: Text("PORTFOLIO")) {
-                    NetWorthCell(netWorth: netWorth)
-                    ForEach(localLists.portfolioStocks) { stock in
-                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
-                            StockRow(stock: stock)
+                    Section(header: Text("PORTFOLIO")) {
+                        NetWorthCell(netWorth: netWorth)
+                        ForEach(localLists.portfolioStocks) { stock in
+                            NavigationLink(destination: StockDetails(detailsData: DetailsSumData(ticker: stock.ticker))) {
+                                StockRow(stock: stock)
+                            }
                         }
+                        .onMove(perform: movePortfolioStocks)
                     }
-                    .onMove(perform: movePortfolioStocks)
-                }
 
-                Section(header: Text("FAVORITES")) {
-                    ForEach(localLists.favoritesStocks) { stock in
-                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
-                            StockRow(stock: stock)
+                    Section(header: Text("FAVORITES")) {
+                        ForEach(localLists.favoritesStocks) { stock in
+                            NavigationLink(destination: StockDetails(detailsData: DetailsSumData(ticker: stock.ticker))) {
+                                StockRow(stock: stock)
+                            }
                         }
+                        .onMove(perform: moveFavoritesStocks)
+                        .onDelete(perform: deleteFavoritesStocks)
                     }
-                    .onMove(perform: moveFavoritesStocks)
-                    .onDelete(perform: deleteFavoritesStocks)
-                }
-                TiingoLinkCell()
-
-                Section(header: Text("TESTS")) {
-                    ForEach(testStocks) { stock in
-                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
-                            StockRow(stock: stock)
-                        }
-                    }
-                    .onMove(perform: moveFavoritesStocks)
-                    .onDelete(perform: deleteFavoritesStocks)
-                }//Section
+                    TiingoLinkCell()
                 } else {
                     if searchBar.text.count >= 3 {
                         SearchView(autocompleteStocks: AutocompleteStocks(input: searchBar.text))
@@ -127,7 +115,7 @@ struct SearchView: View {
     @ObservedObject var autocompleteStocks: AutocompleteStocks
     var body: some View {
         ForEach(autocompleteStocks.stocks) { stock in
-            NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
+            NavigationLink(destination: StockDetails(detailsData: DetailsSumData(ticker: stock.ticker))) {
                 VStack(alignment: .leading) {
                     Text(stock.ticker)
                         .font(.title3)

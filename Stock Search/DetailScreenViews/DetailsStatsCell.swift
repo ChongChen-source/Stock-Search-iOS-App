@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DetailsStatsCell: View {
-//    @State var fields: [String]
     @State var statsInfo: StatsInfo
     
     var thressColumnGrid:[GridItem] = [
@@ -39,7 +38,7 @@ struct DetailsStatsCell: View {
 
 struct DetailsStatsCell_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsStatsCell(statsInfo: getStatsInfo(ticker: "AAPL"))
+        DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: "AAPL").statsInfo)
             .previewLayout(.fixed(width: 400, height: 200))
     }
 }

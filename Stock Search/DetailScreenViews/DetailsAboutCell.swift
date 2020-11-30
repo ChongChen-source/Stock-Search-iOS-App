@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsAboutCell: View {
-    @State var description: String
+    @ObservedObject var descriptionInfo: DescriptionInfo
     
     @State var isExpanded: Bool = false
 
@@ -17,7 +17,7 @@ struct DetailsAboutCell: View {
             Text("About")
                 .font(.title2)
                 .padding(.vertical)
-            Text(description)
+            Text(descriptionInfo.description)
                 .lineLimit( isExpanded ? nil: 2)
             HStack {
                 Spacer()
@@ -32,6 +32,6 @@ struct DetailsAboutCell: View {
 
 struct DetailsAboutCell_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsAboutCell(description: getDescriptionInfo(ticker: "AAPL").description)
+        DetailsAboutCell(descriptionInfo: DescriptionInfo(ticker: "AAPL"))
     }
 }

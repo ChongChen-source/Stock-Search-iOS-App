@@ -14,7 +14,7 @@ struct StockRow: View {
         HStack {
             BasicStockInfoCell(stock: stock)
             Spacer()
-            LatestPriceInfoCell(latestPriceInfo: getLatestPriceInfo(ticker: stock.ticker))
+            BasicPriceInfoCell(basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo)
         }
     }
 }
@@ -49,33 +49,33 @@ struct BasicStockInfoCell: View {
     }
 }
 
-struct LatestPriceInfoCell: View {
-    @State var latestPriceInfo: LatestPriceInfo
+struct BasicPriceInfoCell: View {
+    @State var basicPriceInfo: BasicPriceInfo
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("\(latestPriceInfo.lastPrice, specifier: "%.2f")")
+            Text("\(basicPriceInfo.currPrice, specifier: "%.2f")")
                 .fontWeight(.bold)
             
             HStack {
-                if latestPriceInfo.change > 0 {
+                if basicPriceInfo.change > 0 {
                     Image(systemName: "arrow.up.forward")
                 }
-                else if latestPriceInfo.change < 0 {
+                else if basicPriceInfo.change < 0 {
                     Image(systemName: "arrow.down.forward")
                 }
                 
-                Text("\(latestPriceInfo.change, specifier: "%.2f")")
+                Text("\(basicPriceInfo.change, specifier: "%.2f")")
             }
             .foregroundColor(getColor())
         }
     }
     
     func getColor() -> Color {
-        if latestPriceInfo.change > 0 {
+        if basicPriceInfo.change > 0 {
             return Color.green
         }
-        else if latestPriceInfo.change < 0 {
+        else if basicPriceInfo.change < 0 {
             return Color.red
         }
         else {

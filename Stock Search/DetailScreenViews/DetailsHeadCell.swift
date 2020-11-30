@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct DetailsHeadCell: View {
-    @State var latestPriceInfo: LatestPriceInfo
-    @State var descriptionInfo: DescriptionInfo
+    @State var basicPriceInfo: BasicPriceInfo
+    @ObservedObject var descriptionInfo: DescriptionInfo
     var body: some View {
         VStack {
             HStack {
@@ -18,10 +18,10 @@ struct DetailsHeadCell: View {
                 Spacer()
             }
             HStack {
-                Text("$ \(latestPriceInfo.lastPrice, specifier: "%.2f")")
+                Text("$ \(basicPriceInfo.currPrice, specifier: "%.2f")")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("($ \(latestPriceInfo.change, specifier: "%.2f"))")
+                Text("($ \(basicPriceInfo.change, specifier: "%.2f"))")
                     .foregroundColor(getColor())
                 Spacer()
             }
@@ -29,10 +29,10 @@ struct DetailsHeadCell: View {
     }
     
     func getColor() -> Color {
-        if latestPriceInfo.change > 0 {
+        if basicPriceInfo.change > 0 {
             return Color.green
         }
-        else if latestPriceInfo.change < 0 {
+        else if basicPriceInfo.change < 0 {
             return Color.red
         }
         else {
@@ -45,7 +45,7 @@ struct DetailsHeadCell_Previews: PreviewProvider {
     static var previews: some View {
         let ticker = "AAPL"
         Group {
-            DetailsHeadCell(latestPriceInfo: getLatestPriceInfo(ticker: ticker), descriptionInfo: getDescriptionInfo(ticker: ticker))
+            DetailsHeadCell(basicPriceInfo: LatestPriceInfo(ticker: ticker).basicPriceInfo, descriptionInfo: DescriptionInfo(ticker: ticker))
         }
         .previewLayout(.fixed(width: 400, height: 200))
     }

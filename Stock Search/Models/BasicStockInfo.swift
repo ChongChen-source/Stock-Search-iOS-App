@@ -35,7 +35,7 @@ func getLocalStocks(listName: String) -> [BasicStockInfo] {
 
 func getBasicStockInfo(ticker: String) -> BasicStockInfo {
     let stock: BasicStockInfo = BasicStockInfo(ticker: ticker,
-                                               name: getDescriptionInfo(ticker: ticker).name,
+                                               name: DescriptionInfo(ticker: ticker).name,
                                                isBought: isBought(ticker: ticker),
                                                sharesBought: getSharesBought(ticker: ticker),
                                                isFavorited: isFavorited(ticker: ticker))

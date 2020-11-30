@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailsPortfolioCell: View {
     @State var stock: BasicStockInfo
+    @State var basicPriceInfo: BasicPriceInfo
     @State var showTradeSheet: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,7 +20,7 @@ struct DetailsPortfolioCell: View {
                 if stock.isBought {
                     VStack(alignment: .leading) {
                         Text("Shares Owned: \(stock.sharesBought, specifier: "%.4f")")
-                        Text("Market Value: $\(getLatestPriceInfo(ticker: stock.ticker).lastPrice, specifier: "%.2f")")
+                        Text("Market Value: $\(basicPriceInfo.currPrice, specifier: "%.2f")")
                     }
                 } else {
                     VStack(alignment: .leading) {
@@ -40,7 +41,7 @@ struct DetailsPortfolioCell: View {
                         .cornerRadius(40)
                 }
                 .sheet(isPresented: $showTradeSheet) {
-                            TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock)
+                    TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, basicPriceInfo: basicPriceInfo)
                         }
             }
         }
@@ -49,6 +50,6 @@ struct DetailsPortfolioCell: View {
 
 struct DetailsPortfolioCell_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsPortfolioCell(stock: testStocks[0])
+        DetailsPortfolioCell(stock: getBasicStockInfo(ticker: "AAPL"), basicPriceInfo: LatestPriceInfo(ticker: "AAPL").basicPriceInfo)
     }
 }
