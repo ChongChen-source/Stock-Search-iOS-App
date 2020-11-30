@@ -19,8 +19,9 @@ struct HomeScreen: View {
     var body: some View {
         NavigationView {
             List {
+                if searchBar.text.isEmpty {
                 CurrDateCell()
-                
+
                 Section(header: Text("PORTFOLIO")) {
                     NetWorthCell(netWorth: netWorth)
                     ForEach(localLists.portfolioStocks) { stock in
@@ -30,7 +31,7 @@ struct HomeScreen: View {
                     }
                     .onMove(perform: movePortfolioStocks)
                 }
-                
+
                 Section(header: Text("FAVORITES")) {
                     ForEach(localLists.favoritesStocks) { stock in
                         NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
@@ -41,7 +42,7 @@ struct HomeScreen: View {
                     .onDelete(perform: deleteFavoritesStocks)
                 }
                 TiingoLinkCell()
-                
+
                 Section(header: Text("TESTS")) {
                     ForEach(testStocks) { stock in
                         NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
@@ -50,8 +51,21 @@ struct HomeScreen: View {
                     }
                     .onMove(perform: moveFavoritesStocks)
                     .onDelete(perform: deleteFavoritesStocks)
-                }
-            }
+                }//Section
+                } else {
+                    ForEach(testStocks) { stock in
+                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
+                            VStack(alignment: .leading) {
+                                Text(stock.ticker)
+                                    .font(.title3)
+                                    .fontWeight(.heavy)
+                                Text(stock.name)
+                                    .foregroundColor(Color.gray)
+                            }
+                        }
+                    }
+                }//if-else
+            }//List
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
             .toolbar {
@@ -66,7 +80,7 @@ struct HomeScreen: View {
             setLocalStocks(localStocks: localLists.portfolioStocks, listName: listNamePortfolio)
         }
     }
-    
+
     func moveFavoritesStocks(from: IndexSet, to: Int) {
         withAnimation {
             localLists.favoritesStocks.move(fromOffsets: from, toOffset: to)
