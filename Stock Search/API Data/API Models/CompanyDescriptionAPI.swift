@@ -15,3 +15,5 @@ struct CompanyDescriptionAPI: Hashable, Codable {
     var name: String
     var endDate: String
 }
+
+let testCompanyDescriptionData: CompanyDescriptionAPI = load("testCompanyDescriptionData.json")

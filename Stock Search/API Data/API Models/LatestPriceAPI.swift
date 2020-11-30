@@ -26,3 +26,5 @@ struct LatestPriceAPI: Hashable, Codable {
     var open: Double
     var tngoLast: Double
 }
+
+let testLatestPriceData:  [LatestPriceAPI] = load("testLatestPriceData.json")

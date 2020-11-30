@@ -16,6 +16,8 @@ struct HomeScreen: View {
     
     @State var netWorth: Double = getNetWorth()
     
+    @State var autocompleteStocks: [BasicStockInfo] = []
+    
     var body: some View {
         NavigationView {
             List {
@@ -53,17 +55,9 @@ struct HomeScreen: View {
                     .onDelete(perform: deleteFavoritesStocks)
                 }//Section
                 } else {
-                    ForEach(testStocks) { stock in
-                        NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
-                            VStack(alignment: .leading) {
-                                Text(stock.ticker)
-                                    .font(.title3)
-                                    .fontWeight(.heavy)
-                                Text(stock.name)
-                                    .foregroundColor(Color.gray)
-                            }
-                        }
-                    }
+                    if searchBar.text.count >= 3 {
+                        SearchView(autocompleteStocks: AutocompleteStocks(input: searchBar.text))
+                    }//length control
                 }//if-else
             }//List
             .navigationBarTitle(Text("Stocks"))
@@ -125,6 +119,23 @@ struct TiingoLinkCell: View {
                 .foregroundColor(Color.gray)
                 .font(.footnote)
             Spacer()
+        }
+    }
+}
+
+struct SearchView: View {
+    @ObservedObject var autocompleteStocks: AutocompleteStocks
+    var body: some View {
+        ForEach(autocompleteStocks.stocks) { stock in
+            NavigationLink(destination: StockDetails(stock: getBasicStockInfo(ticker: stock.ticker))) {
+                VStack(alignment: .leading) {
+                    Text(stock.ticker)
+                        .font(.title3)
+                        .fontWeight(.heavy)
+                    Text(stock.name)
+                        .foregroundColor(Color.gray)
+                }
+            }
         }
     }
 }

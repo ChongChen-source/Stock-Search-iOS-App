@@ -45,7 +45,7 @@ func getBasicStockInfo(ticker: String) -> BasicStockInfo {
 func isBought(ticker: String) -> Bool {
     let portfolioList: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
     for stock in portfolioList {
-        if ticker == stock.ticker {
+        if ticker == stock.ticker && stock.sharesBought > 0{
             return true
         }
     }

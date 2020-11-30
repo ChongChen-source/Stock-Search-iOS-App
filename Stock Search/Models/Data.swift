@@ -23,9 +23,6 @@ let testStocks: [BasicStockInfo] = [
     BasicStockInfo(ticker: "TSLA", name: "Tesla", isBought: false, sharesBought: 0, isFavorited: false)
 ]
 
-let testCompanyDescriptionData: CompanyDescriptionAPI = load("testCompanyDescriptionData.json")
-let testLatestPriceData:  [LatestPriceAPI] = load("testLatestPriceData.json")
-
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
     
