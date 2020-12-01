@@ -250,6 +250,7 @@ struct TradeSheetView: View {
                 }//ZStack
             }
         }//NavigationView
+        .accentColor(.black)
     }//body
     
     func getNumInput() -> Double {
@@ -273,10 +274,10 @@ struct TradeSheetView: View {
     }
 }//view
 
-//struct TradeSheetView_Previews: PreviewProvider {
-//    @State static var showTradeSheet: Bool = false
-//    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
-//    static var previews: some View {
-//        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo)
-//    }
-//}
+struct TradeSheetView_Previews: PreviewProvider {
+    @State static var showTradeSheet: Bool = false
+    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
+    static var previews: some View {
+        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: LatestPriceInfo(ticker: stock.ticker))
+    }
+}

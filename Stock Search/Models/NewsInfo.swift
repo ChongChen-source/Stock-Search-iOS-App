@@ -9,7 +9,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class ArticleData: JSONable, Identifiable {
+class ArticleData: JSONable, Identifiable, ObservableObject {
     var id = UUID()
     var source: String
     var author: String
@@ -27,6 +27,9 @@ class ArticleData: JSONable, Identifiable {
         publishedAt = parameter["publishedAt"].stringValue
     }
 }
+
+let testArticleJson: JSON = load("testArticleData.json")
+let testArticle: ArticleData = ArticleData(parameter: testArticleJson)
 
 class NewsInfo: ObservableObject {
     @Published var articles: [ArticleData]

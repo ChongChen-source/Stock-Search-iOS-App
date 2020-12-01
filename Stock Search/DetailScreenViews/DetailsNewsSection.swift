@@ -10,14 +10,17 @@ import SwiftUI
 struct DetailsNewsSection: View {
     @ObservedObject var newsInfo: NewsInfo
     var body: some View {
-        let articles = newsInfo.articles
+        var articles = newsInfo.articles
         VStack(alignment: .leading) {
             Text("News")
                 .font(.title2)
                 .padding(.vertical)
+            if !articles.isEmpty {
+                DetailsNewsArticleCell(article: articles.remove(at: 0))
+            }
+            Divider()
             ForEach(articles) { article in
-                Text(article.title)
-                Divider()
+                DetailsNewsArticleCell(article: article)
             }
         }
     }

@@ -11,6 +11,8 @@
 		D45B52A9257129CE000EE1B1 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B52A8257129CE000EE1B1 /* StockRow.swift */; };
 		D47C9606257667950020645B /* testNewsData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C9605257667950020645B /* testNewsData.json */; };
 		D47C960B257669140020645B /* NewsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C960A257669140020645B /* NewsInfo.swift */; };
+		D47C961C25767BA00020645B /* DetailsNewsArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C961B25767BA00020645B /* DetailsNewsArticleCell.swift */; };
+		D47C962125767CEE0020645B /* testArticleData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C962025767CEE0020645B /* testArticleData.json */; };
 		D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71C22572481E002E51C4 /* testLatestPriceData.json */; };
 		D47E71CB2572497F002E51C4 /* testCompanyDescriptionData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */; };
 		D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */; };
@@ -65,6 +67,8 @@
 		D45B52A8257129CE000EE1B1 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
 		D47C9605257667950020645B /* testNewsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testNewsData.json; sourceTree = "<group>"; };
 		D47C960A257669140020645B /* NewsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfo.swift; sourceTree = "<group>"; };
+		D47C961B25767BA00020645B /* DetailsNewsArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsArticleCell.swift; sourceTree = "<group>"; };
+		D47C962025767CEE0020645B /* testArticleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testArticleData.json; sourceTree = "<group>"; };
 		D47E71C22572481E002E51C4 /* testLatestPriceData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testLatestPriceData.json; sourceTree = "<group>"; };
 		D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testCompanyDescriptionData.json; sourceTree = "<group>"; };
 		D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				D47E71C22572481E002E51C4 /* testLatestPriceData.json */,
 				D487843525751289009A0126 /* testAutocompleteData.json */,
 				D47C9605257667950020645B /* testNewsData.json */,
+				D47C962025767CEE0020645B /* testArticleData.json */,
 			);
 			path = "Test Data";
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		D485FCDA256AC13D00390E54 /* HomeScreenViews */ = {
 			isa = PBXGroup;
 			children = (
+				D485FCEA256B984F00390E54 /* HomeScreen.swift */,
 				D45B52A8257129CE000EE1B1 /* StockRow.swift */,
 				D45B52A32571297F000EE1B1 /* CurrDateCell.swift */,
 				D4FF7FEA256E76650054C969 /* SearchBar.swift */,
@@ -162,6 +168,7 @@
 				D47E731525733F48002E51C4 /* DetailsAboutSection.swift */,
 				D47E73682573499B002E51C4 /* DetailsNewsSection.swift */,
 				D487821D2573B97A009A0126 /* Toast.swift */,
+				D47C961B25767BA00020645B /* DetailsNewsArticleCell.swift */,
 			);
 			path = DetailScreenViews;
 			sourceTree = "<group>";
@@ -221,7 +228,6 @@
 				D4F102EA256511A500C16A0D /* Assets.xcassets */,
 				D4F102F2256511A500C16A0D /* Info.plist */,
 				D4F102EC256511A500C16A0D /* Preview Content */,
-				D485FCEA256B984F00390E54 /* HomeScreen.swift */,
 			);
 			path = "Stock Search";
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				D487843625751289009A0126 /* testAutocompleteData.json in Resources */,
 				D4BAA4F2256EC44E0088F042 /* testStocks.json in Resources */,
 				D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */,
+				D47C962125767CEE0020645B /* testArticleData.json in Resources */,
 				D4F102EB256511A500C16A0D /* Assets.xcassets in Resources */,
 				D47C9606257667950020645B /* testNewsData.json in Resources */,
 			);
@@ -400,6 +407,7 @@
 				D487843125750B6F009A0126 /* AutocompleteStocks.swift in Sources */,
 				D48782342573C695009A0126 /* Worth.swift in Sources */,
 				D47C960B257669140020645B /* NewsInfo.swift in Sources */,
+				D47C961C25767BA00020645B /* DetailsNewsArticleCell.swift in Sources */,
 				D4BAA4EC256EC3BE0088F042 /* Data.swift in Sources */,
 				D45B52A42571297F000EE1B1 /* CurrDateCell.swift in Sources */,
 				D45B52A9257129CE000EE1B1 /* StockRow.swift in Sources */,
