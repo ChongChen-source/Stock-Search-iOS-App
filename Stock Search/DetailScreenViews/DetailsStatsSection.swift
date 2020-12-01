@@ -31,6 +31,7 @@ struct DetailsStatsSection: View {
                     Text("Volume: \(latestPriceInfo.volume, specifier: "%.2f")")
                     Text("Bid Price: \(latestPriceInfo.bidPrice, specifier: "%.2f")")
                 }
+                .padding(.vertical, 0)
             }
         }
     }

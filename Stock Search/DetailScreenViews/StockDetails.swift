@@ -19,7 +19,7 @@ struct StockDetails: View {
     @State var showToast: Bool = false
     
     var body: some View {
-//        ScrollView(.vertical) {
+        ScrollView(.vertical) {
             VStack(alignment: .leading) {
                 DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
                 DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
@@ -27,8 +27,8 @@ struct StockDetails: View {
                 DetailsAboutSection(descriptionInfo: descriptionInfo)
                 DetailsNewsSection(newsInfo: newsInfo)
             }
-//        }
-        .padding(.horizontal)
+            .padding(.horizontal)
+        }
         .navigationBarTitle(Text(ticker))
         .toast(isPresented: self.$showToast) {
             Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")

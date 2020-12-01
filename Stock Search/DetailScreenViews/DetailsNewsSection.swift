@@ -11,13 +11,13 @@ struct DetailsNewsSection: View {
     @ObservedObject var newsInfo: NewsInfo
     var body: some View {
         let articles = newsInfo.articles
-        List {
+        VStack(alignment: .leading) {
+            Text("News")
+                .font(.title2)
+                .padding(.vertical)
             ForEach(articles) { article in
                 Text(article.title)
-                Text(article.source)
-                Text(article.url)
-                Text(article.urlToImage)
-                Text(article.publishedAt)
+                Divider()
             }
         }
     }
