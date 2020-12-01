@@ -188,14 +188,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D4BAA4F0256EC42C0088F042 /* API Data */ = {
-			isa = PBXGroup;
-			children = (
-				D47E71E625725EAD002E51C4 /* Test Data */,
-			);
-			path = "API Data";
-			sourceTree = "<group>";
-		};
 		D4F102D8256511A200C16A0D = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +211,7 @@
 		D4F102E3256511A200C16A0D /* Stock Search */ = {
 			isa = PBXGroup;
 			children = (
-				D4BAA4F0256EC42C0088F042 /* API Data */,
+				D47E71E625725EAD002E51C4 /* Test Data */,
 				D4BAA4B2256EB67B0088F042 /* Models */,
 				D485FCDE256AC26200390E54 /* DetailScreenViews */,
 				D485FCDA256AC13D00390E54 /* HomeScreenViews */,
