@@ -25,7 +25,7 @@ struct HomeScreen: View {
                     Section(header: Text("PORTFOLIO")) {
                         NetWorthCell(netWorth: netWorth)
                         ForEach(localLists.portfolioStocks) { stock in
-                            NavigationLink(destination: StockDetails(stock: stock)) {
+                            NavigationLink(destination: StockDetails(ticker: stock.ticker, isFavorited: stock.isFavorited)) {
                                 StockRow(stock: stock)
                             }
                         }
@@ -34,7 +34,7 @@ struct HomeScreen: View {
 
                     Section(header: Text("FAVORITES")) {
                         ForEach(localLists.favoritesStocks) { stock in
-                            NavigationLink(destination: StockDetails(stock: stock)) {
+                            NavigationLink(destination: StockDetails(ticker: stock.ticker, isFavorited: stock.isFavorited)) {
                                 StockRow(stock: stock)
                             }
                         }
@@ -115,7 +115,7 @@ struct SearchView: View {
     @ObservedObject var autocompleteStocks: AutocompleteStocks
     var body: some View {
         ForEach(autocompleteStocks.stocks) { stock in
-            NavigationLink(destination: StockDetails(stock: stock)) {
+            NavigationLink(destination: StockDetails(ticker: stock.ticker, isFavorited: stock.isFavorited)) {
                 VStack(alignment: .leading) {
                     Text(stock.ticker)
                         .font(.title3)
