@@ -39,5 +39,14 @@ func getSharesWorth() -> Double {
 }
 
 func getNetWorth() -> Double {
-    return getAvailableWorth() + getSharesWorth()
+    if UserDefaults.standard.valueExists(forKey: keyNameNetWorth) {
+        return UserDefaults.standard.double(forKey: keyNameNetWorth)
+    } else {
+        setNetWorth(worth: initNetWorth)
+        return initNetWorth
+    }
+}
+
+func setNetWorth(worth: Double) -> Void {
+    UserDefaults.standard.set(worth, forKey: keyNameNetWorth)
 }

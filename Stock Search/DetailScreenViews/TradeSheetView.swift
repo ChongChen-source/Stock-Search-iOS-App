@@ -67,13 +67,17 @@ struct TradeSheetView: View {
                                     
                                     // update the stock info
                                     self.stock.sharesBought += getNumInput()
-                                    self.stock.isBought = true
                                     
                                     // update the local portfolio list
                                     var portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
-                                    if portfolioStocks.isEmpty {
+                                    // case1: hasn't been bought before
+                                    if !self.stock.isBought {
+                                        stock.isBought = true
                                         portfolioStocks.append(stock)
-                                    } else {
+                                    }
+                                    // case2: has been bought before
+                                    else {
+                                        stock.isBought = true
                                         for (index, localStock) in portfolioStocks.enumerated() {
                                             if (localStock.ticker == stock.ticker) {
                                                 portfolioStocks[index].isBought = stock.isBought

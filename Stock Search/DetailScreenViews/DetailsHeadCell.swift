@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct DetailsHeadCell: View {
-//    @State var basicPriceInfo: BasicPriceInfo
     @ObservedObject var descriptionInfo: DescriptionInfo
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     var body: some View {
         VStack {
             HStack {
@@ -17,36 +17,38 @@ struct DetailsHeadCell: View {
                     .foregroundColor(Color.gray)
                 Spacer()
             }
-//            HStack {
-//                Text("$ \(basicPriceInfo.currPrice, specifier: "%.2f")")
-//                    .font(.title)
-//                    .fontWeight(.bold)
-//                Text("($ \(basicPriceInfo.change, specifier: "%.2f"))")
-//                    .foregroundColor(getColor())
-//                Spacer()
-//            }
+            HStack(alignment: .bottom) {
+                Text("$\(latestPriceInfo.currPrice, specifier: "%.2f")")
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                Text("($\(latestPriceInfo.change, specifier: "%.2f"))")
+                    .font(.title)
+                    .foregroundColor(getColor())
+                Spacer()
+            }
         }
     }
     
-//    func getColor() -> Color {
-//        if basicPriceInfo.change > 0 {
-//            return Color.green
-//        }
-//        else if basicPriceInfo.change < 0 {
-//            return Color.red
-//        }
-//        else {
-//            return Color.gray
-//        }
-//    }
+    func getColor() -> Color {
+        if latestPriceInfo.change > 0 {
+            return Color.green
+        }
+        else if latestPriceInfo.change < 0 {
+            return Color.red
+        }
+        else {
+            return Color.gray
+        }
+    }
 }
 
-//struct DetailsHeadCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let ticker = "AAPL"
-//        Group {
-//            DetailsHeadCell(basicPriceInfo: LatestPriceInfo(ticker: ticker).basicPriceInfo, descriptionInfo: DescriptionInfo(ticker: ticker))
-//        }
-//        .previewLayout(.fixed(width: 400, height: 200))
-//    }
-//}
+struct DetailsHeadCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let ticker = "AAPL"
+        Group {
+            DetailsHeadCell(descriptionInfo: DescriptionInfo(ticker: ticker),
+                            latestPriceInfo: LatestPriceInfo(ticker: ticker))
+        }
+        .previewLayout(.fixed(width: 400, height: 200))
+    }
+}

@@ -18,18 +18,18 @@ struct StockDetails: View {
     @State var showToast: Bool = false
     
     var body: some View {
-        NavigationView {
+//        ScrollView(.vertical) {
             VStack(alignment: .leading) {
-                DetailsHeadCell(descriptionInfo: descriptionInfo)
+                DetailsHeadCell(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
                 DetailsPortfolioCell(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                 DetailsStatsCell(latestPriceInfo: latestPriceInfo)
                 DetailsAboutCell(descriptionInfo: descriptionInfo)
             }
-            .padding(.horizontal)
-            .navigationBarTitle(Text(ticker))
-            .toast(isPresented: self.$showToast) {
-                Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")
-            }
+//        }
+        .padding(.horizontal)
+        .navigationBarTitle(Text(ticker))
+        .toast(isPresented: self.$showToast) {
+            Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")
         }
         .toolbar {
             Button(action: withAnimation{{
@@ -68,13 +68,17 @@ struct StockDetails: View {
             }}){
                 Image(systemName: isFavorited ? "plus.circle.fill" : "plus.circle")
             }
-        }
+        }//toolbar
+    }//body
+}//struct
+
+
+struct StockDetails_Previews: PreviewProvider {
+    static var ticker = "DETAIL"
+    static var previews: some View {
+        StockDetails(ticker: ticker,
+                     descriptionInfo: DescriptionInfo(ticker: ticker),
+                     latestPriceInfo: LatestPriceInfo(ticker: ticker),
+                     isFavorited: true)
     }
 }
-
-
-//struct StockDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StockDetails(detailsData: DetailsSumData(ticker: "AAPL"))
-//    }
-//}
