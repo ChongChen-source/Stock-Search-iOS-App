@@ -27,7 +27,6 @@
 		D48784262574F72E009A0126 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = D48784252574F72E009A0126 /* SwiftyJSON */; };
 		D487843125750B6F009A0126 /* AutocompleteStocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487843025750B6F009A0126 /* AutocompleteStocks.swift */; };
 		D487843625751289009A0126 /* testAutocompleteData in Resources */ = {isa = PBXBuildFile; fileRef = D487843525751289009A0126 /* testAutocompleteData */; };
-		D487846625755DF8009A0126 /* DetailsSumData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D487846525755DF8009A0126 /* DetailsSumData.swift */; };
 		D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA48B256E7C130088F042 /* ViewControllerResolver.swift */; };
 		D4BAA4B4256EB6A80088F042 /* BasicStockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */; };
 		D4BAA4EC256EC3BE0088F042 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA4EB256EC3BE0088F042 /* Data.swift */; };
@@ -78,7 +77,6 @@
 		D48782892573DEE6009A0126 /* TradeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSheetView.swift; sourceTree = "<group>"; };
 		D487843025750B6F009A0126 /* AutocompleteStocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteStocks.swift; sourceTree = "<group>"; };
 		D487843525751289009A0126 /* testAutocompleteData */ = {isa = PBXFileReference; lastKnownFileType = text; path = testAutocompleteData; sourceTree = "<group>"; };
-		D487846525755DF8009A0126 /* DetailsSumData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSumData.swift; sourceTree = "<group>"; };
 		D4BAA48B256E7C130088F042 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
 		D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStockInfo.swift; sourceTree = "<group>"; };
 		D4BAA4EB256EC3BE0088F042 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 				D47E720225726596002E51C4 /* DescriptionInfo.swift */,
 				D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */,
 				D48782332573C695009A0126 /* NetWorth.swift */,
-				D487846525755DF8009A0126 /* DetailsSumData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,7 +397,6 @@
 				D45B52A9257129CE000EE1B1 /* StockRow.swift in Sources */,
 				D4BAA4B4256EB6A80088F042 /* BasicStockInfo.swift in Sources */,
 				D47E73692573499B002E51C4 /* DetailsNewsCell.swift in Sources */,
-				D487846625755DF8009A0126 /* DetailsSumData.swift in Sources */,
 				D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */,
 				D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */,
 				D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */,

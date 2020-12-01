@@ -9,39 +9,39 @@ import SwiftUI
 
 struct StockDetails: View {
     @EnvironmentObject var localLists: BasicStockInfoList
-    @ObservedObject var detailsData: DetailsSumData
+    @State var stock: BasicStockInfo
     @State var showToast: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                DetailsHeadCell(basicPriceInfo: detailsData.basicPriceInfo, descriptionInfo: detailsData.descriptionInfo)
-                DetailsPortfolioCell(stock: detailsData.basicStockInfo, basicPriceInfo: detailsData.basicPriceInfo)
-                DetailsStatsCell(statsInfo: detailsData.statsInfo)
-                DetailsAboutCell(descriptionInfo: detailsData.descriptionInfo)
+                DetailsHeadCell(basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo, descriptionInfo: DescriptionInfo(ticker: stock.ticker))
+                DetailsPortfolioCell(stock: stock, basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo)
+                DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: stock.ticker).statsInfo)
+                DetailsAboutCell(descriptionInfo: DescriptionInfo(ticker: stock.ticker))
             }
             .padding(.horizontal)
-            .navigationBarTitle(Text(detailsData.ticker))
+            .navigationBarTitle(Text(stock.ticker))
             .toast(isPresented: self.$showToast) {
-                Text(detailsData.basicStockInfo.isFavorited ? "Adding \(detailsData.ticker) to Favorites" : "Removing \(detailsData.ticker) from Favorites")
+                Text(stock.isFavorited ? "Adding \(stock.ticker) to Favorites" : "Removing \(stock.ticker) from Favorites")
             }
         }
         .toolbar {
             Button(action: withAnimation{{
                 // toggle the flag
-                detailsData.basicStockInfo.isFavorited.toggle()
+                stock.isFavorited.toggle()
                 // get local list
                 var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
                 
                 // case 1: add to the favorites list
-                if detailsData.basicStockInfo.isFavorited {
-                    favoritesList.append(detailsData.basicStockInfo)
+                if stock.isFavorited {
+                    favoritesList.append(stock)
                 }
                 // case 2: remove from the favorites list
                 else if !favoritesList.isEmpty {
                     var indexes: [Int] = []
                     for (index, localStock) in favoritesList.enumerated() {
-                        if (localStock.ticker == detailsData.basicStockInfo.ticker) {
+                        if (localStock.ticker == stock.ticker) {
                             indexes.append(index)
                         }
                     }
@@ -55,15 +55,15 @@ struct StockDetails: View {
                 // show toast
                 self.showToast = true
             }}){
-                Image(systemName: detailsData.basicStockInfo.isFavorited ? "plus.circle.fill" : "plus.circle")
+                Image(systemName: stock.isFavorited ? "plus.circle.fill" : "plus.circle")
             }
         }
     }
 }
 
 
-struct StockDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        StockDetails(detailsData: DetailsSumData(ticker: "AAPL"))
-    }
-}
+//struct StockDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StockDetails(detailsData: DetailsSumData(ticker: "AAPL"))
+//    }
+//}
