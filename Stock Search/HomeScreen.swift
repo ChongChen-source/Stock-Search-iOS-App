@@ -23,6 +23,7 @@ struct HomeScreen: View {
                             NavigationLink(destination: StockDetails(ticker: stock.ticker,
                                                                      descriptionInfo: DescriptionInfo(ticker: stock.ticker),
                                                                      latestPriceInfo: LatestPriceInfo(ticker: stock.ticker),
+                                                                     newsInfo: NewsInfo(ticker: stock.ticker),
                                                                      isFavorited: stock.isFavorited)) {
                                 StockRow(stock: stock)
                             }
@@ -35,6 +36,7 @@ struct HomeScreen: View {
                             NavigationLink(destination: StockDetails(ticker: stock.ticker,
                                                                      descriptionInfo: DescriptionInfo(ticker: stock.ticker),
                                                                      latestPriceInfo: LatestPriceInfo(ticker: stock.ticker),
+                                                                     newsInfo: NewsInfo(ticker: stock.ticker),
                                                                      isFavorited: stock.isFavorited)) {
                                 StockRow(stock: stock)
                             }
@@ -119,6 +121,7 @@ struct SearchView: View {
             NavigationLink(destination: StockDetails(ticker: stock.ticker,
                                                      descriptionInfo: DescriptionInfo(ticker: stock.ticker),
                                                      latestPriceInfo: LatestPriceInfo(ticker: stock.ticker),
+                                                     newsInfo: NewsInfo(ticker: stock.ticker),
                                                      isFavorited: stock.isFavorited)) {
                 VStack(alignment: .leading) {
                     Text(stock.ticker)

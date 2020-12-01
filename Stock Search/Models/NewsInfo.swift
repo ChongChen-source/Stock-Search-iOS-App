@@ -9,7 +9,8 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class ArticleData: JSONable {
+class ArticleData: JSONable, Identifiable {
+    var id = UUID()
     var source: String
     var author: String
     var title: String

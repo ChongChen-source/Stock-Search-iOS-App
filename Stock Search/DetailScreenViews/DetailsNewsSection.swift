@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct DetailsNewsSection: View {
+    @ObservedObject var newsInfo: NewsInfo
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let articles = newsInfo.articles
+        List {
+            ForEach(articles) { article in
+                Text(article.title)
+                Text(article.source)
+                Text(article.url)
+                Text(article.urlToImage)
+                Text(article.publishedAt)
+            }
+        }
     }
 }
 
 struct DetailsNewsSection_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsNewsSection()
+        DetailsNewsSection(newsInfo: NewsInfo(ticker: "AAPL"))
     }
 }

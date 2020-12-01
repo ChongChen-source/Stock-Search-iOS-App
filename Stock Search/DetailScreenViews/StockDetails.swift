@@ -13,6 +13,7 @@ struct StockDetails: View {
     var ticker: String
     @ObservedObject var descriptionInfo: DescriptionInfo
     @ObservedObject var latestPriceInfo: LatestPriceInfo
+    @ObservedObject var newsInfo: NewsInfo
     
     @State var isFavorited: Bool
     @State var showToast: Bool = false
@@ -24,6 +25,7 @@ struct StockDetails: View {
                 DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                 DetailsStatsSection(latestPriceInfo: latestPriceInfo)
                 DetailsAboutSection(descriptionInfo: descriptionInfo)
+                DetailsNewsSection(newsInfo: newsInfo)
             }
 //        }
         .padding(.horizontal)
@@ -79,6 +81,7 @@ struct StockDetails_Previews: PreviewProvider {
         StockDetails(ticker: ticker,
                      descriptionInfo: DescriptionInfo(ticker: ticker),
                      latestPriceInfo: LatestPriceInfo(ticker: ticker),
+                     newsInfo: NewsInfo(ticker: ticker),
                      isFavorited: true)
     }
 }
