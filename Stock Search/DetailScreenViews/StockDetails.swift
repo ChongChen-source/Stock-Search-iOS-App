@@ -11,17 +11,19 @@ struct StockDetails: View {
     @EnvironmentObject var localLists: BasicStockInfoList
     
     var ticker: String
-    @State var isFavorited: Bool
+    @ObservedObject var descriptionInfo: DescriptionInfo
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     
+    @State var isFavorited: Bool
     @State var showToast: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                DetailsHeadCell(basicPriceInfo: LatestPriceInfo(ticker: ticker).basicPriceInfo, descriptionInfo: DescriptionInfo(ticker: ticker))
-                DetailsPortfolioCell(stock: getBasicStockInfo(ticker: ticker), basicPriceInfo: LatestPriceInfo(ticker: ticker).basicPriceInfo)
-                DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: ticker).statsInfo)
-                DetailsAboutCell(descriptionInfo: DescriptionInfo(ticker: ticker))
+                DetailsHeadCell(descriptionInfo: descriptionInfo)
+                DetailsPortfolioCell(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
+                DetailsStatsCell(latestPriceInfo: latestPriceInfo)
+                DetailsAboutCell(descriptionInfo: descriptionInfo)
             }
             .padding(.horizontal)
             .navigationBarTitle(Text(ticker))
@@ -38,8 +40,11 @@ struct StockDetails: View {
                 
                 // case 1: add to the favorites list
                 if isFavorited {
-                    var stock = getBasicStockInfo(ticker: ticker)
-                    stock.isFavorited = isFavorited
+                    let stock = BasicStockInfo(ticker: ticker,
+                                               name: descriptionInfo.name,
+                                               isBought: isBought(ticker: ticker),
+                                               sharesBought: getSharesBought(ticker: ticker),
+                                               isFavorited: isFavorited)
                     favoritesList.append(stock)
                 }
                 // case 2: remove from the favorites list

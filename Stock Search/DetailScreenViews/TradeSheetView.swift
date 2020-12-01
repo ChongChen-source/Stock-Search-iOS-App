@@ -11,7 +11,7 @@ struct TradeSheetView: View {
     @EnvironmentObject var localLists: BasicStockInfoList
     @Binding var showTradeSheet: Bool
     @Binding var stock: BasicStockInfo
-    @State var basicPriceInfo: BasicPriceInfo
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     
     @State var showBoughtView: Bool = false
     @State var showSoldView: Bool = false
@@ -43,7 +43,7 @@ struct TradeSheetView: View {
                         }
                         HStack {
                             Spacer()
-                            Text("x $\(basicPriceInfo.currPrice, specifier: "%.2f")/Share = $\(getCalcWorth(), specifier: "%.2f")")
+                            Text("x $\(latestPriceInfo.currPrice, specifier: "%.2f")/Share = $\(getCalcWorth(), specifier: "%.2f")")
                         }
                     }
                     Spacer()
@@ -242,14 +242,14 @@ struct TradeSheetView: View {
     }
     
     func getCalcWorth() -> Double {
-        return getNumInput() * basicPriceInfo.currPrice
+        return getNumInput() * latestPriceInfo.currPrice
     }
 }//view
 
-struct TradeSheetView_Previews: PreviewProvider {
-    @State static var showTradeSheet: Bool = false
-    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
-    static var previews: some View {
-        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo)
-    }
-}
+//struct TradeSheetView_Previews: PreviewProvider {
+//    @State static var showTradeSheet: Bool = false
+//    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
+//    static var previews: some View {
+//        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, basicPriceInfo: LatestPriceInfo(ticker: stock.ticker).basicPriceInfo)
+//    }
+//}

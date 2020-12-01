@@ -9,27 +9,34 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-struct BasicPriceInfo: Hashable, Codable {
+class LatestPriceData: JSONable{
     var ticker: String
     var currPrice: Double
     var change: Double
-}
-
-struct StatsInfo: Hashable, Codable {
-    var ticker: String
-    var currPrice: Double
-    var openPrice: Double
+    var open: Double
     var high: Double
     var low: Double
     var mid: Double
     var volume: Double
     var bidPrice: Double
+    
+    required init(parameter: JSON) {
+        ticker = parameter["ticker"].stringValue
+        currPrice = parameter["last"].doubleValue
+        change = parameter["last"].doubleValue - parameter["prevClose"].doubleValue
+        open = parameter["open"].doubleValue
+        high = parameter["high"].doubleValue
+        low = parameter["low"].doubleValue
+        mid = parameter["mid"].doubleValue
+        volume = parameter["volume"].doubleValue
+        bidPrice = parameter["bidPrice"].doubleValue
+    }
 }
 
-class LatestPriceData: JSONable{
+class LatestPriceInfo: ObservableObject {
     @Published var ticker: String
-    @Published var last: Double
-    @Published var prevClose: Double
+    @Published var currPrice: Double
+    @Published var change: Double
     @Published var open: Double
     @Published var high: Double
     @Published var low: Double
@@ -37,50 +44,34 @@ class LatestPriceData: JSONable{
     @Published var volume: Double
     @Published var bidPrice: Double
     
-    required init(parameter: JSON) {
-        self.ticker = parameter["ticker"].stringValue
-        self.last = parameter["last"].doubleValue
-        self.prevClose = parameter["prevClose"].doubleValue
-        self.open = parameter["open"].doubleValue
-        self.high = parameter["high"].doubleValue
-        self.low = parameter["low"].doubleValue
-        self.mid = parameter["mid"].doubleValue
-        self.volume = parameter["volume"].doubleValue
-        self.bidPrice = parameter["bidPrice"].doubleValue
-    }
-}
-
-class LatestPriceInfo: ObservableObject {
-    @Published var basicPriceInfo: BasicPriceInfo
-    @Published var statsInfo: StatsInfo
-    
     required init(ticker: String) {
-        self.basicPriceInfo = BasicPriceInfo(ticker: "", currPrice: 0, change: 0)
-        self.statsInfo = StatsInfo(ticker: "", currPrice: 0, openPrice: 0, high: 0, low: 0, mid: 0, volume: 0, bidPrice: 0)
+        self.ticker = ticker
+        self.currPrice = 0
+        self.change = 0
+        self.open = 0
+        self.high = 0
+        self.low = 0
+        self.mid = 0
+        self.volume = 0
+        self.bidPrice = 0
         let url: String = backendServerUrl + "/get-latest-price/" + ticker
         if let url = URL(string: (url)) {
             print("requesting: \(url)")
             AF.request(url).validate().responseJSON { (response) in
                 if let data = response.data {
                     let json = JSON(data)
-                    if let jsonData = json.to(type: [LatestPriceData].self) {
-                        let infoData = jsonData as! [LatestPriceData]
-                        print("\(infoData[0])")
-                        let info = infoData[0]
-                        self.basicPriceInfo.ticker = info.ticker
-                        self.basicPriceInfo.currPrice = info.last
-                        let c: String = String(format: "%.2f", info.last)
-                        print("Latest price of \(info.ticker) is: \(c)")
-                        self.basicPriceInfo.change = info.last - info.prevClose
-                        
-                        self.statsInfo.ticker = info.ticker
-                        self.statsInfo.currPrice = info.last
-                        self.statsInfo.openPrice = info.open
-                        self.statsInfo.high = info.high
-                        self.statsInfo.low = info.low
-                        self.statsInfo.mid = info.mid
-                        self.statsInfo.volume = info.volume
-                        self.statsInfo.bidPrice = info.bidPrice
+                    let infoArr:[JSON] = json.arrayValue
+                    let infoJson:JSON = infoArr[0]
+                    if let infoData = infoJson.to(type: LatestPriceData.self) {
+                        let info = infoData as! LatestPriceData
+                        self.currPrice = info.currPrice
+                        self.change = info.change
+                        self.open = info.open
+                        self.high = info.high
+                        self.low = info.low
+                        self.mid = info.mid
+                        self.volume = info.volume
+                        self.bidPrice = info.bidPrice
                     }
                 }
             }

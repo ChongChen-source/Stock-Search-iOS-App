@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailsStatsCell: View {
-    @State var statsInfo: StatsInfo
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     
     var thressColumnGrid:[GridItem] = [
         .init(.fixed(30), spacing: .none, alignment: .leading),
@@ -23,22 +23,22 @@ struct DetailsStatsCell: View {
                 .padding(.vertical)
             ScrollView(.horizontal) {
                 LazyHGrid(rows: thressColumnGrid, spacing: 40) {
-                    Text("Current Price: \(statsInfo.currPrice, specifier: "%.2f")")
-                    Text("Open Price: \(statsInfo.openPrice, specifier: "%.2f")")
-                    Text("High: \(statsInfo.high, specifier: "%.2f")")
-                    Text("Low: \(statsInfo.low, specifier: "%.2f")")
-                    Text("Mid: \(statsInfo.mid, specifier: "%.2f")")
-                    Text("Volume: \(statsInfo.volume, specifier: "%.2f")")
-                    Text("Bid Price: \(statsInfo.bidPrice, specifier: "%.2f")")
+                    Text("Current Price: \(latestPriceInfo.currPrice, specifier: "%.2f")")
+                    Text("Open Price: \(latestPriceInfo.open, specifier: "%.2f")")
+                    Text("High: \(latestPriceInfo.high, specifier: "%.2f")")
+                    Text("Low: \(latestPriceInfo.low, specifier: "%.2f")")
+                    Text("Mid: \(latestPriceInfo.mid, specifier: "%.2f")")
+                    Text("Volume: \(latestPriceInfo.volume, specifier: "%.2f")")
+                    Text("Bid Price: \(latestPriceInfo.bidPrice, specifier: "%.2f")")
                 }
             }
         }
     }
 }
 
-struct DetailsStatsCell_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: "AAPL").statsInfo)
-            .previewLayout(.fixed(width: 400, height: 200))
-    }
-}
+//struct DetailsStatsCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: "AAPL").statsInfo)
+//            .previewLayout(.fixed(width: 400, height: 200))
+//    }
+//}

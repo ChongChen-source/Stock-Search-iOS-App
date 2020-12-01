@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DetailsPortfolioCell: View {
     @State var stock: BasicStockInfo
-    @State var basicPriceInfo: BasicPriceInfo
     @State var showTradeSheet: Bool = false
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     var body: some View {
         VStack(alignment: .leading) {
             Text("Portfolio")
@@ -20,7 +20,7 @@ struct DetailsPortfolioCell: View {
                 if stock.isBought {
                     VStack(alignment: .leading) {
                         Text("Shares Owned: \(stock.sharesBought, specifier: "%.4f")")
-                        Text("Market Value: $\(basicPriceInfo.currPrice, specifier: "%.2f")")
+                        Text("Market Value: $\(latestPriceInfo.currPrice, specifier: "%.2f")")
                     }
                 } else {
                     VStack(alignment: .leading) {
@@ -41,15 +41,15 @@ struct DetailsPortfolioCell: View {
                         .cornerRadius(40)
                 }
                 .sheet(isPresented: $showTradeSheet) {
-                    TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, basicPriceInfo: basicPriceInfo)
+                    TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: latestPriceInfo)
                         }
             }
         }
     }
 }
 
-struct DetailsPortfolioCell_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailsPortfolioCell(stock: getBasicStockInfo(ticker: "AAPL"), basicPriceInfo: LatestPriceInfo(ticker: "AAPL").basicPriceInfo)
-    }
-}
+//struct DetailsPortfolioCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailsPortfolioCell(stock: getBasicStockInfo(ticker: "AAPL"), basicPriceInfo: LatestPriceInfo(ticker: "AAPL").basicPriceInfo)
+//    }
+//}
