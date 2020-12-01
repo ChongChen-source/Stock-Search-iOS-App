@@ -72,9 +72,9 @@ class LatestPriceInfo: ObservableObject {
                         self.mid = info.mid
                         self.volume = info.volume
                         self.bidPrice = info.bidPrice
-                    }
-                }
-            }
-        }
-    }
-}
+                    }//pass value
+                }//parse response
+            }//AF request
+        }//pass url
+    }//init
+}//class

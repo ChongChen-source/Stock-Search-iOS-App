@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct DetailsNewsCell: View {
+struct DetailsNewsSection: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct DetailsNewsCell_Previews: PreviewProvider {
+struct DetailsNewsSection_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsNewsCell()
+        DetailsNewsSection()
     }
 }

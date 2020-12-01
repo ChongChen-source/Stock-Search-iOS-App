@@ -20,10 +20,10 @@ struct StockDetails: View {
     var body: some View {
 //        ScrollView(.vertical) {
             VStack(alignment: .leading) {
-                DetailsHeadCell(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
-                DetailsPortfolioCell(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
-                DetailsStatsCell(latestPriceInfo: latestPriceInfo)
-                DetailsAboutCell(descriptionInfo: descriptionInfo)
+                DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
+                DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
+                DetailsStatsSection(latestPriceInfo: latestPriceInfo)
+                DetailsAboutSection(descriptionInfo: descriptionInfo)
             }
 //        }
         .padding(.horizontal)

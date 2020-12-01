@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailsStatsCell: View {
+struct DetailsStatsSection: View {
     @ObservedObject var latestPriceInfo: LatestPriceInfo
     
     var thressColumnGrid:[GridItem] = [
@@ -36,7 +36,7 @@ struct DetailsStatsCell: View {
     }
 }
 
-//struct DetailsStatsCell_Previews: PreviewProvider {
+//struct DetailsStatsSection_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: "AAPL").statsInfo)
 //            .previewLayout(.fixed(width: 400, height: 200))

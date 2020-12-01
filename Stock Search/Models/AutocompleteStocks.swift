@@ -70,9 +70,9 @@ class AutocompleteStocks: ObservableObject {
                                                        isFavorited: isFavorited(ticker: data.ticker))
                             self.stocks.append(stock)
                         }
-                    }
-                }
-            }
-        }
-    }
-}
+                    }//pass value
+                }//parse response
+            }//AF request
+        }//pass url
+    }//init
+}//class

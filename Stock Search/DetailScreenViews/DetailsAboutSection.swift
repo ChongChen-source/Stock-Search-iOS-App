@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailsAboutCell: View {
+struct DetailsAboutSection: View {
     @ObservedObject var descriptionInfo: DescriptionInfo
     
     @State var isExpanded: Bool = false
@@ -30,8 +30,8 @@ struct DetailsAboutCell: View {
      }
 }
 
-struct DetailsAboutCell_Previews: PreviewProvider {
+struct DetailsAboutSection_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsAboutCell(descriptionInfo: DescriptionInfo(ticker: "AAPL"))
+        DetailsAboutSection(descriptionInfo: DescriptionInfo(ticker: "AAPL"))
     }
 }

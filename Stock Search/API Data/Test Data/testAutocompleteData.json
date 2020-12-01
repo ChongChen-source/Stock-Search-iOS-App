@@ -1,0 +1,42 @@
+[
+    {
+        "ticker":"AA",
+        "name":"Alcoa Corp"
+    },
+    {
+        "ticker":"AAA",
+        "name":"AAF First Priority CLO Bond ETF"
+    },
+    {
+        "ticker":"AAAAX",
+        "name":"DWS RREEF REAL ASSETS FUND CLASS A"
+    },
+    {
+        "ticker":"AAACX",
+        "name":null
+    },
+    {
+        "ticker":"AAAEX",
+        "name":"Allianz Funds AllianzGI Health Sciences Fd Cl P"
+    },
+    {
+        "ticker":"AAAGX",
+        "name":"THRIVENT LARGE CAP GROWTH FUND CLASS A"
+    },
+    {
+        "ticker":"AAAIF",
+        "name":"ALTERNATIVE INVEST"
+    },
+    {
+        "ticker":"AAAIX",
+        "name":"STRATEGIC ALLOCATION AGGRESSIVE FUND I CLASS"
+    },
+    {
+        "ticker":"AAALF",
+        "name":"Aareal Bank AG"
+    },
+    {
+        "ticker":"AAALY",
+        "name":"Aareal Bank AG"
+    }
+]

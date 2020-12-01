@@ -40,10 +40,9 @@ class DescriptionInfo: ObservableObject {
                         let descriptionInfoData = jsonData as! DescriptionInfoData
                         self.name = descriptionInfoData.name
                         self.description = descriptionInfoData.description
-                        print("get description")
-                    }
-                }
-            }
-        }
-    }
-}
+                    }//pass value
+                }//parse response
+            }//AF request
+        }//pass url
+    }//init
+}//class

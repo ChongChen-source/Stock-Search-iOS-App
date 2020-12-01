@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailsPortfolioCell: View {
+struct DetailsPortfolioSection: View {
     @State var stock: BasicStockInfo
     @State var showTradeSheet: Bool = false
     @ObservedObject var latestPriceInfo: LatestPriceInfo
@@ -48,7 +48,7 @@ struct DetailsPortfolioCell: View {
     }
 }
 
-//struct DetailsPortfolioCell_Previews: PreviewProvider {
+//struct DetailsPortfolioSection_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailsPortfolioCell(stock: getBasicStockInfo(ticker: "AAPL"), basicPriceInfo: LatestPriceInfo(ticker: "AAPL").basicPriceInfo)
 //    }

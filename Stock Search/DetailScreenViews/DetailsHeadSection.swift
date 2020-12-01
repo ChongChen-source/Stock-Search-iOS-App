@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DetailsHeadCell: View {
+struct DetailsHeadSection: View {
     @ObservedObject var descriptionInfo: DescriptionInfo
     @ObservedObject var latestPriceInfo: LatestPriceInfo
     var body: some View {
@@ -42,11 +42,11 @@ struct DetailsHeadCell: View {
     }
 }
 
-struct DetailsHeadCell_Previews: PreviewProvider {
+struct DetailsHeadSection_Previews: PreviewProvider {
     static var previews: some View {
         let ticker = "AAPL"
         Group {
-            DetailsHeadCell(descriptionInfo: DescriptionInfo(ticker: ticker),
+            DetailsHeadSection(descriptionInfo: DescriptionInfo(ticker: ticker),
                             latestPriceInfo: LatestPriceInfo(ticker: ticker))
         }
         .previewLayout(.fixed(width: 400, height: 200))
