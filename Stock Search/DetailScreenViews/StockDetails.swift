@@ -44,20 +44,20 @@ struct StockDetails: View {
                                                name: descriptionInfo.name,
                                                isBought: isBought(ticker: ticker),
                                                sharesBought: getSharesBought(ticker: ticker),
-                                               isFavorited: isFavorited)
+                                               isFavorited: true)
                     favoritesList.append(stock)
                 }
                 // case 2: remove from the favorites list
                 else if !favoritesList.isEmpty {
-                    var indexes: [Int] = []
+                    var removeIndex: Int = -1
                     for (index, localStock) in favoritesList.enumerated() {
                         if (localStock.ticker == ticker) {
-                            indexes.append(index)
+                            favoritesList[index].isFavorited = false
+                            removeIndex = index
                         }
                     }
-                    for index in indexes {
-                        favoritesList[index].isFavorited = isFavorited
-                        favoritesList.remove(at: index)
+                    if removeIndex != -1 {
+                        favoritesList.remove(at: removeIndex)
                     }
                 }
                 // update local storage

@@ -38,7 +38,7 @@ struct TradeSheetView: View {
                                 .keyboardType(.decimalPad)
                                 .font(.system(size: 100))
                             Spacer()
-                            Text("Share")
+                            Text(getNumInput() > 1 ? "Shares" : "Share")
                                 .font(.title)
                         }
                         HStack {
@@ -65,25 +65,35 @@ struct TradeSheetView: View {
                                     setAvailableWorth(availableWorth: self.availableWorth)
                                     localLists.availableWorth = self.availableWorth
                                     
-                                    // update the local portfolio
+                                    // update the stock info
                                     self.stock.sharesBought += getNumInput()
                                     self.stock.isBought = true
+                                    
+                                    // update the local portfolio list
                                     var portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
                                     if portfolioStocks.isEmpty {
                                         portfolioStocks.append(stock)
                                     } else {
-                                        var i: Int = -1
                                         for (index, localStock) in portfolioStocks.enumerated() {
                                             if (localStock.ticker == stock.ticker) {
-                                                i = index
+                                                portfolioStocks[index].isBought = stock.isBought
+                                                portfolioStocks[index].sharesBought = stock.sharesBought
                                             }
-                                        }
-                                        if i != -1 {
-                                            portfolioStocks[i] = stock
                                         }
                                     }
                                     localLists.portfolioStocks = portfolioStocks
                                     setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
+                                    
+                                    // update the local favourites list if needed
+                                    var favoritesStocks: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+                                    for (index, localStock) in favoritesStocks.enumerated() {
+                                        if (localStock.ticker == stock.ticker) {
+                                            favoritesStocks[index].isBought = stock.isBought
+                                            favoritesStocks[index].sharesBought = stock.sharesBought
+                                        }
+                                    }
+                                    localLists.favoritesStocks = favoritesStocks
+                                    setLocalStocks(localStocks: favoritesStocks, listName: listNameFavorites)
                                     
                                     // update the worth
                                     self.showBoughtView.toggle()
@@ -114,27 +124,40 @@ struct TradeSheetView: View {
                                     setAvailableWorth(availableWorth: self.availableWorth)
                                     localLists.availableWorth = self.availableWorth
                                     
-                                    // update the local portfolio
+                                    // update the stock info
                                     self.stock.sharesBought -= getNumInput()
                                     if self.stock.sharesBought == 0 {
                                         stock.isBought = false
                                     }
+                                    
+                                    // update the local portfolio
                                     var portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
-                                    var i: Int = -1
+                                    var removeIndex: Int = -1
                                     for (index, localStock) in portfolioStocks.enumerated() {
                                         if (localStock.ticker == stock.ticker) {
-                                            i = index
+                                            portfolioStocks[index].isBought = stock.isBought
+                                            portfolioStocks[index].sharesBought = stock.sharesBought
+                                            if (!stock.isBought) {
+                                                removeIndex = index
+                                            }
                                         }
                                     }
-                                    if i != -1 {
-                                        if self.stock.sharesBought == 0 {
-                                            portfolioStocks.remove(at: i)
-                                        } else {
-                                            portfolioStocks[i] = stock
-                                        }
+                                    if removeIndex != -1 {
+                                        portfolioStocks.remove(at: removeIndex)
                                     }
                                     localLists.portfolioStocks = portfolioStocks
                                     setLocalStocks(localStocks: portfolioStocks, listName: listNamePortfolio)
+                                    
+                                    // update the local favourites list if needed
+                                    var favoritesStocks: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+                                    for (index, localStock) in favoritesStocks.enumerated() {
+                                        if (localStock.ticker == stock.ticker) {
+                                            favoritesStocks[index].isBought = stock.isBought
+                                            favoritesStocks[index].sharesBought = stock.sharesBought
+                                        }
+                                    }
+                                    localLists.favoritesStocks = favoritesStocks
+                                    setLocalStocks(localStocks: favoritesStocks, listName: listNameFavorites)
                                     
                                     // update the worth
                                     self.showSoldView.toggle()
