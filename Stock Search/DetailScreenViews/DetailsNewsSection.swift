@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailsNewsSection: View {
     @ObservedObject var newsInfo: NewsInfo
     var body: some View {
-        var articles = newsInfo.articles
+        var articles = getTestArticles()
         VStack(alignment: .leading) {
             Text("News")
                 .font(.title2)
@@ -28,6 +28,6 @@ struct DetailsNewsSection: View {
 
 struct DetailsNewsSection_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsNewsSection(newsInfo: NewsInfo(ticker: "AAPL"))
+        DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
     }
 }

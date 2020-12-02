@@ -15,6 +15,7 @@
 		D47C962125767CEE0020645B /* testArticleData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C962025767CEE0020645B /* testArticleData.json */; };
 		D47C9630257731A30020645B /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D47C962F257731A30020645B /* KingfisherSwiftUI */; };
 		D47C9632257731A30020645B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D47C9631257731A30020645B /* Kingfisher */; };
+		D47C969425775D0B0020645B /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C969325775D0B0020645B /* testArticles.json */; };
 		D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71C22572481E002E51C4 /* testLatestPriceData.json */; };
 		D47E71CB2572497F002E51C4 /* testCompanyDescriptionData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */; };
 		D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */; };
@@ -71,6 +72,7 @@
 		D47C960A257669140020645B /* NewsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsInfo.swift; sourceTree = "<group>"; };
 		D47C961B25767BA00020645B /* DetailsNewsArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsArticleCell.swift; sourceTree = "<group>"; };
 		D47C962025767CEE0020645B /* testArticleData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testArticleData.json; sourceTree = "<group>"; };
+		D47C969325775D0B0020645B /* testArticles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testArticles.json; sourceTree = "<group>"; };
 		D47E71C22572481E002E51C4 /* testLatestPriceData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testLatestPriceData.json; sourceTree = "<group>"; };
 		D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testCompanyDescriptionData.json; sourceTree = "<group>"; };
 		D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				D487843525751289009A0126 /* testAutocompleteData.json */,
 				D47C9605257667950020645B /* testNewsData.json */,
 				D47C962025767CEE0020645B /* testArticleData.json */,
+				D47C969325775D0B0020645B /* testArticles.json */,
 			);
 			path = "Test Data";
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */,
 				D47C962125767CEE0020645B /* testArticleData.json in Resources */,
 				D4F102EB256511A500C16A0D /* Assets.xcassets in Resources */,
+				D47C969425775D0B0020645B /* testArticles.json in Resources */,
 				D47C9606257667950020645B /* testNewsData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

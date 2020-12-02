@@ -25,7 +25,8 @@ struct StockDetails: View {
                 DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                 DetailsStatsSection(latestPriceInfo: latestPriceInfo)
                 DetailsAboutSection(descriptionInfo: descriptionInfo)
-                DetailsNewsSection(newsInfo: newsInfo)
+//                DetailsNewsSection(newsInfo: newsInfo)
+                DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
             }
             .padding(.horizontal)
         }
@@ -81,7 +82,7 @@ struct StockDetails_Previews: PreviewProvider {
         StockDetails(ticker: ticker,
                      descriptionInfo: DescriptionInfo(ticker: ticker),
                      latestPriceInfo: LatestPriceInfo(ticker: ticker),
-                     newsInfo: NewsInfo(ticker: ticker),
+                     newsInfo: NewsInfo(isTest: true),
                      isFavorited: true)
     }
 }

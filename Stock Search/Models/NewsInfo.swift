@@ -31,10 +31,28 @@ class ArticleData: JSONable, Identifiable, ObservableObject {
 let testArticleJson: JSON = load("testArticleData.json")
 let testArticle: ArticleData = ArticleData(parameter: testArticleJson)
 
+
+func getTestArticles() -> [ArticleData] {
+    var articles: [ArticleData] = []
+    let testNewsInfoJson: JSON = load("testArticles.json")
+    let articleJsonArr: [JSON] = testNewsInfoJson["articles"].arrayValue
+    for articleJson in articleJsonArr {
+        if let articleData = articleJson.to(type: ArticleData.self) {
+            let article = articleData as! ArticleData
+            articles.append(article)
+        }
+    }
+    return articles
+}
+
 class NewsInfo: ObservableObject {
     @Published var articles: [ArticleData]
     
-    required init(ticker: String) {
+    init(isTest: Bool) {
+        self.articles = getTestArticles()
+    }
+    
+    init(ticker: String) {
         self.articles = []
         let url: String = backendServerUrl + "/get-news/" + ticker
         if let url = URL(string: (url)) {

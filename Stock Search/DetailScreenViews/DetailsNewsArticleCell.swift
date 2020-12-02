@@ -12,32 +12,8 @@ struct DetailsNewsArticleCell: View {
     @Environment(\.openURL) var openURL
     @ObservedObject var article: ArticleData
     var body: some View {
-        Button(action: {
-            openURL(URL(string: article.url)!)
-        }) {
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Group {
-                            Text(article.source)
-                            Text(getTimeAgoStr())
-                        }
-                        .font(.footnote)
-                        .foregroundColor(Color.gray)
-                    }
-                    Text(article.title)
-                    
-                }
-                Spacer()
-                KFImage(URL(string: article.urlToImage)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .clipped()
-                    .cornerRadius(10)
-            }
-        }
-        .foregroundColor(Color.black)
+        NewsArticleFollowing(article: article)
+        .frame(width: .infinity, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
         .contextMenu {
             Button(action: {
                 openURL(URL(string: article.url)!)
@@ -58,22 +34,62 @@ struct DetailsNewsArticleCell: View {
             }) {
                 Label("Share on Twitter", systemImage: "square.and.arrow.up")
             }
-        }//contenxtMenu
+        }//contextMenu
+    }//body
+    
+
+}//struct
+
+struct DetailsNewsArticleCell_Previews: PreviewProvider {
+    static let articles = getTestArticles()
+    static var previews: some View {
+        ScrollView(.vertical) {
+            VStack {
+                ForEach(articles) { article in
+                    DetailsNewsArticleCell(article: article)
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+}
+
+struct NewsArticleFollowing: View {
+    @ObservedObject var article: ArticleData
+    @Environment(\.openURL) var openURL
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color.white)
+            HStack {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Group {
+                            Text(article.source)
+                            Text(getTimeAgoStr())
+                        }
+                        .font(.footnote)
+                        .foregroundColor(Color.gray)
+                    }
+                    Text(article.title)
+                }
+                Spacer()
+                KFImage(URL(string: article.urlToImage)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .contentShape(RoundedRectangle(cornerRadius: 10))
+                    .clipped()
+                    .cornerRadius(10)
+            }//HStack
+            .frame(width: .infinity, height: 100, alignment: .leading)
+            .cornerRadius(10)
+        }//ZStack
+        .cornerRadius(10)
     }//body
     
     func getTimeAgoStr() -> String {
         //let publishedAt: String = article.publishedAt
         return "XXX days ago"
-    }
-}//struct
-
-struct DetailsNewsArticleCell_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            DetailsNewsArticleCell(article: testArticle)
-            DetailsNewsArticleCell(article: testArticle)
-            DetailsNewsArticleCell(article: testArticle)
-            DetailsNewsArticleCell(article: testArticle)
-        }
     }
 }
