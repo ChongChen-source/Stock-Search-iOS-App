@@ -16,7 +16,7 @@ struct StockRow: View {
         HStack {
             BasicStockInfoCell(stock: stock)
             Spacer()
-            BasicPriceInfoCell(latestPriceInfo: latestPriceInfo)
+            BasicPriceInfoCell(basicPriceInfo: latestPriceInfo)
         }
         .onReceive(timer) { time in
             print("Refresh price every 15s: \(time)")
@@ -56,22 +56,22 @@ struct BasicStockInfoCell: View {
 }
 
 struct BasicPriceInfoCell: View {
-    @ObservedObject var latestPriceInfo: LatestPriceInfo
+    @ObservedObject var basicPriceInfo: LatestPriceInfo
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("\(latestPriceInfo.currPrice, specifier: "%.2f")")
+            Text("\(basicPriceInfo.currPrice, specifier: "%.2f")")
                 .fontWeight(.bold)
             
             HStack {
-                if latestPriceInfo.change > 0 {
+                if basicPriceInfo.change > 0 {
                     Image(systemName: "arrow.up.forward")
                 }
-                else if latestPriceInfo.change < 0 {
+                else if basicPriceInfo.change < 0 {
                     Image(systemName: "arrow.down.forward")
                 }
                 
-                Text("\(latestPriceInfo.change, specifier: "%.2f")")
+                Text("\(basicPriceInfo.change, specifier: "%.2f")")
             }
             .foregroundColor(getColor())
         }
@@ -79,10 +79,10 @@ struct BasicPriceInfoCell: View {
     }
     
     func getColor() -> Color {
-        if latestPriceInfo.change > 0 {
+        if basicPriceInfo.change > 0 {
             return Color.green
         }
-        else if latestPriceInfo.change < 0 {
+        else if basicPriceInfo.change < 0 {
             return Color.red
         }
         else {

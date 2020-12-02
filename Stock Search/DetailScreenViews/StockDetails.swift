@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StockDetails: View {
-    @EnvironmentObject var localLists: BasicStockInfoList
+    @EnvironmentObject var localLists: LocalListsInfo
     
     var ticker: String
     @ObservedObject var descriptionInfo: DescriptionInfo

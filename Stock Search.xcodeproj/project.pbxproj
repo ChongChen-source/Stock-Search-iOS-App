@@ -18,6 +18,7 @@
 		D47C969425775D0B0020645B /* testArticles.json in Resources */ = {isa = PBXBuildFile; fileRef = D47C969325775D0B0020645B /* testArticles.json */; };
 		D47C970B25777DE20020645B /* TimeAgoFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C970A25777DE20020645B /* TimeAgoFunc.swift */; };
 		D47C9713257780BC0020645B /* DetailsNewsHeadArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C9712257780BC0020645B /* DetailsNewsHeadArticle.swift */; };
+		D47C97862577CEEA0020645B /* LocalPrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C97852577CEEA0020645B /* LocalPrices.swift */; };
 		D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71C22572481E002E51C4 /* testLatestPriceData.json */; };
 		D47E71CB2572497F002E51C4 /* testCompanyDescriptionData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */; };
 		D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */; };
@@ -40,7 +41,7 @@
 		D4BAA4B4256EB6A80088F042 /* BasicStockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */; };
 		D4BAA4EC256EC3BE0088F042 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA4EB256EC3BE0088F042 /* Data.swift */; };
 		D4BAA4F2256EC44E0088F042 /* testStocks.json in Resources */ = {isa = PBXBuildFile; fileRef = D4BAA4F1256EC44E0088F042 /* testStocks.json */; };
-		D4BAA50F256F896C0088F042 /* BasicStockInfoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA50E256F896C0088F042 /* BasicStockInfoList.swift */; };
+		D4BAA50F256F896C0088F042 /* LocalListsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BAA50E256F896C0088F042 /* LocalListsInfo.swift */; };
 		D4F102E5256511A200C16A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102E4256511A200C16A0D /* AppDelegate.swift */; };
 		D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F102E6256511A200C16A0D /* SceneDelegate.swift */; };
 		D4F102EB256511A500C16A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F102EA256511A500C16A0D /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		D47C969325775D0B0020645B /* testArticles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testArticles.json; sourceTree = "<group>"; };
 		D47C970A25777DE20020645B /* TimeAgoFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAgoFunc.swift; sourceTree = "<group>"; };
 		D47C9712257780BC0020645B /* DetailsNewsHeadArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsHeadArticle.swift; sourceTree = "<group>"; };
+		D47C97852577CEEA0020645B /* LocalPrices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPrices.swift; sourceTree = "<group>"; };
 		D47E71C22572481E002E51C4 /* testLatestPriceData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testLatestPriceData.json; sourceTree = "<group>"; };
 		D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testCompanyDescriptionData.json; sourceTree = "<group>"; };
 		D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
@@ -97,7 +99,7 @@
 		D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStockInfo.swift; sourceTree = "<group>"; };
 		D4BAA4EB256EC3BE0088F042 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D4BAA4F1256EC44E0088F042 /* testStocks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testStocks.json; sourceTree = "<group>"; };
-		D4BAA50E256F896C0088F042 /* BasicStockInfoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStockInfoList.swift; sourceTree = "<group>"; };
+		D4BAA50E256F896C0088F042 /* LocalListsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalListsInfo.swift; sourceTree = "<group>"; };
 		D4F102E1256511A200C16A0D /* Stock Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stock Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F102E4256511A200C16A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4F102E6256511A200C16A0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,12 +193,13 @@
 				D4BAA4EB256EC3BE0088F042 /* Data.swift */,
 				D48782332573C695009A0126 /* Worth.swift */,
 				D4BAA4B3256EB6A80088F042 /* BasicStockInfo.swift */,
-				D4BAA50E256F896C0088F042 /* BasicStockInfoList.swift */,
+				D4BAA50E256F896C0088F042 /* LocalListsInfo.swift */,
 				D487843025750B6F009A0126 /* AutocompleteStocks.swift */,
 				D47E720225726596002E51C4 /* DescriptionInfo.swift */,
 				D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */,
 				D47C960A257669140020645B /* NewsInfo.swift */,
 				D47C970A25777DE20020645B /* TimeAgoFunc.swift */,
+				D47C97852577CEEA0020645B /* LocalPrices.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				D47E73692573499B002E51C4 /* DetailsNewsSection.swift in Sources */,
 				D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */,
 				D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */,
+				D47C97862577CEEA0020645B /* LocalPrices.swift in Sources */,
 				D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */,
 				D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */,
 				D487821E2573B97A009A0126 /* Toast.swift in Sources */,
@@ -434,7 +438,7 @@
 				D47E72082572681C002E51C4 /* DetailsHeadSection.swift in Sources */,
 				D487828A2573DEE6009A0126 /* TradeSheetView.swift in Sources */,
 				D485FCE0256AC2A800390E54 /* StockDetails.swift in Sources */,
-				D4BAA50F256F896C0088F042 /* BasicStockInfoList.swift in Sources */,
+				D4BAA50F256F896C0088F042 /* LocalListsInfo.swift in Sources */,
 				D4FF7FEB256E76650054C969 /* SearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

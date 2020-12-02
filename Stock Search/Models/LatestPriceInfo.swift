@@ -81,3 +81,38 @@ class LatestPriceInfo: ObservableObject {
         }//pass url
     }//init
 }//class
+
+//class BasicStockPriceInfo: Observable {
+//    @Published var ticker: String
+//    @Published var currPrice: Double
+//    @Published var change: Double
+//    @Published var isFetched: Bool
+//
+//    init(ticker: String) {
+//        self.ticker = ticker
+//        self.currPrice = 0
+//        self.change = 0
+//        self.isFetched = false
+//        let list = getLocalStocks(listName: listName)
+//        for stock in list {
+//            let ticker: String = stock.ticker
+//            let url: String = backendServerUrl + "/get-latest-price/" + ticker
+//            if let url = URL(string: (url)) {
+//                print("requesting: \(url)")
+//                AF.request(url).validate().responseJSON { (response) in
+//                    if let data = response.data {
+//                        let json = JSON(data)
+//                        let infoArr:[JSON] = json.arrayValue
+//                        let infoJson:JSON = infoArr[0]
+//                        if let infoData = infoJson.to(type: LatestPriceData.self) {
+//                            let info = infoData as! LatestPriceData
+//                            self.currPrice = info.currPrice
+//                            self.change = info.change
+//                            self.isFetched = true
+//                        }//pass value
+//                    }//parse response
+//                }//AF request
+//            }//pass url
+//        }
+//    }
+//}

@@ -12,6 +12,8 @@ import Foundation
 
 let backendServerUrl: String = "http://csci571-hw8-web-app.us-east-1.elasticbeanstalk.com"
 
+var numLocalRows: Int = getLocalStocks(listName: listNameFavorites).count + getLocalStocks(listName: listNamePortfolio).count
+
 let listNamePortfolio: String = "portfolioList"
 let listNameFavorites: String = "favoritesList"
 let keyNameNetWorth: String = "netWorth"

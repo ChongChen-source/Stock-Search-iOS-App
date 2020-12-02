@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TradeSheetView: View {
-    @EnvironmentObject var localLists: BasicStockInfoList
+    @EnvironmentObject var localLists: LocalListsInfo
     @Binding var showTradeSheet: Bool
     @Binding var stock: BasicStockInfo
     @ObservedObject var latestPriceInfo: LatestPriceInfo

@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    var localLists: BasicStockInfoList = BasicStockInfoList(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
+    var localLists: LocalListsInfo = LocalListsInfo(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
                                                             favoritesStocks: getLocalStocks(listName: listNameFavorites),
                                                             availableWorth: getAvailableWorth())
 
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: HomeScreen().environmentObject(localLists))
+            window.rootViewController = UIHostingController(rootView: HomeScreen(portfolioPrices: LocalPrices(listName: listNamePortfolio), favoritesPrices: LocalPrices(listName: listNameFavorites)).environmentObject(localLists))
             self.window = window
             window.makeKeyAndVisible()
         }

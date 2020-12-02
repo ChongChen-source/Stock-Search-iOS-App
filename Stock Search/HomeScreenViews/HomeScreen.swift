@@ -9,9 +9,21 @@ import SwiftUI
 
 struct HomeScreen: View {
     @ObservedObject var searchBar: SearchBar = SearchBar()
-    @EnvironmentObject var localLists: BasicStockInfoList
+    @EnvironmentObject var localLists: LocalListsInfo
+    
+    @ObservedObject var portfolioPrices: LocalPrices
+    @ObservedObject var favoritesPrices: LocalPrices
     
     var body: some View {
+        
+        if (portfolioPrices.count > 0 && favoritesPrices.count > 0) {
+            NavigationView {
+                VStack {
+                    ProgressView("Fetching Data...")
+                }
+                .navigationBarTitle("Stocks")
+            }
+        } else {
         NavigationView {
             List {
                 if searchBar.text.isEmpty {
@@ -49,14 +61,15 @@ struct HomeScreen: View {
                     if searchBar.text.count >= 3 {
                         SearchView(autocompleteStocks: AutocompleteStocks(input: searchBar.text))
                     }//length control
-                }//if-else
+                }//if-else SearchBar
             }//List
             .navigationBarTitle(Text("Stocks"))
             .add(self.searchBar)
             .toolbar {
                 EditButton()
             }
-        }
+        }//NavigationView
+        }//if-else ProgressView
     }
     
     func movePortfolioStocks(from: IndexSet, to: Int) {
@@ -83,8 +96,8 @@ struct HomeScreen: View {
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
-            .environmentObject(BasicStockInfoList(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
+        HomeScreen(portfolioPrices: LocalPrices(listName: listNamePortfolio), favoritesPrices: LocalPrices(listName: listNameFavorites))
+            .environmentObject(LocalListsInfo(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
                                                   favoritesStocks: getLocalStocks(listName: listNameFavorites)))
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BasicStockInfoList: ObservableObject {
+class LocalListsInfo: ObservableObject {
     @Published var portfolioStocks: [BasicStockInfo]
     @Published var favoritesStocks: [BasicStockInfo]
     @Published var availableWorth: Double
