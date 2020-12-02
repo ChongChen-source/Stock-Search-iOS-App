@@ -9,15 +9,18 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-struct BasicPriceStruct {
-    var ticker: String
-    var currPrice: Double
-    var change: Double
-}
-
 class LocalPrices: ObservableObject {
-    @Published var prices: [BasicPriceStruct]
+    @Published var prices: [LatestPriceInfo]
     @Published var count: Int = 100
+    
+    func getPrice(ticker: String) -> LatestPriceInfo {
+        for price in self.prices {
+            if price.ticker == ticker {
+                return price
+            }
+        }
+        return LatestPriceInfo(ticker: ticker)
+    }
     
     init(listName: String) {
         let list = getLocalStocks(listName: listName)
@@ -25,7 +28,8 @@ class LocalPrices: ObservableObject {
         self.prices = []
         for stock in list {
             let ticker = stock.ticker
-            var basicPriceInfo: BasicPriceStruct = BasicPriceStruct(ticker: ticker, currPrice: 0, change: 0)
+            var latestPriceInfo: LatestPriceInfo = LatestPriceInfo()
+            latestPriceInfo.ticker = ticker
             let url: String = backendServerUrl + "/get-latest-price/" + ticker
             if let url = URL(string: (url)) {
                 print("requesting: \(url)")
@@ -36,9 +40,16 @@ class LocalPrices: ObservableObject {
                         let infoJson:JSON = infoArr[0]
                         if let infoData = infoJson.to(type: LatestPriceData.self) {
                             let info = infoData as! LatestPriceData
-                            basicPriceInfo.currPrice = info.currPrice
-                            basicPriceInfo.change = info.change
-                            self.prices.append(basicPriceInfo)
+                            latestPriceInfo.currPrice = info.currPrice
+                            latestPriceInfo.change = info.change
+                            latestPriceInfo.open = info.open
+                            latestPriceInfo.high = info.high
+                            latestPriceInfo.low = info.low
+                            latestPriceInfo.mid = info.mid
+                            latestPriceInfo.volume = info.volume
+                            latestPriceInfo.bidPrice = info.bidPrice
+                            latestPriceInfo.isFetched = true
+                            self.prices.append(latestPriceInfo)
                             self.count -= 1
                         }//pass value
                     }//parse response

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailsPortfolioSection: View {
+    @EnvironmentObject var localLists: LocalListsInfo
     @State var stock: BasicStockInfo
     @State var showTradeSheet: Bool = false
     @ObservedObject var latestPriceInfo: LatestPriceInfo

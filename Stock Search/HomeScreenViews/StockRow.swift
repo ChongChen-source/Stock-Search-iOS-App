@@ -8,33 +8,43 @@
 import SwiftUI
 
 struct StockRow: View {
+    @EnvironmentObject var localLists: LocalListsInfo
+    @ObservedObject var prices: LocalPrices
     var stock: BasicStockInfo
     let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        var latestPriceInfo: LatestPriceInfo = LatestPriceInfo(ticker: stock.ticker)
-        HStack {
-            BasicStockInfoCell(stock: stock)
-            Spacer()
-            BasicPriceInfoCell(basicPriceInfo: latestPriceInfo)
-        }
-        .onReceive(timer) { time in
-            print("Refresh price every 15s: \(time)")
-            latestPriceInfo = LatestPriceInfo(ticker: stock.ticker)
+        var latestPriceInfo: LatestPriceInfo = prices.getPrice(ticker: stock.ticker)
+        NavigationLink(destination: StockDetails(ticker: stock.ticker,
+                                                 descriptionInfo: DescriptionInfo(ticker: stock.ticker),
+                                                 latestPriceInfo: latestPriceInfo,
+                                                 newsInfo: NewsInfo(isTest: true),
+                                                 isFavorited: stock.isFavorited)) {
+            HStack {
+                BasicStockInfoCell(stock: stock)
+                Spacer()
+                BasicPriceInfoCell(latestPriceInfo: latestPriceInfo)
+            }
+            .onReceive(timer) { time in
+                print("Refresh price every 15s: \(time)")
+                latestPriceInfo = LatestPriceInfo(preInfo: latestPriceInfo)
+                localLists.netWorth = localLists.availableWorth + getSharesWorth()
+                setNetWorth(worth: localLists.netWorth)
+            }
         }
     }
 }
 
-struct StockRowCell_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            StockRow(stock: testStocks[0])
-            StockRow(stock: testStocks[1])
-            StockRow(stock: testStocks[2])
-        }
-        .previewLayout(.fixed(width: 400, height: 80))
-    }
-}
+//struct StockRowCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            StockRow(stock: testStocks[0])
+//            StockRow(stock: testStocks[1])
+//            StockRow(stock: testStocks[2])
+//        }
+//        .previewLayout(.fixed(width: 400, height: 80))
+//    }
+//}
 
 struct BasicStockInfoCell: View {
     var stock: BasicStockInfo
@@ -56,22 +66,22 @@ struct BasicStockInfoCell: View {
 }
 
 struct BasicPriceInfoCell: View {
-    @ObservedObject var basicPriceInfo: LatestPriceInfo
+    @ObservedObject var latestPriceInfo: LatestPriceInfo
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("\(basicPriceInfo.currPrice, specifier: "%.2f")")
+            Text("\(latestPriceInfo.currPrice, specifier: "%.2f")")
                 .fontWeight(.bold)
             
             HStack {
-                if basicPriceInfo.change > 0 {
+                if latestPriceInfo.change > 0 {
                     Image(systemName: "arrow.up.forward")
                 }
-                else if basicPriceInfo.change < 0 {
+                else if latestPriceInfo.change < 0 {
                     Image(systemName: "arrow.down.forward")
                 }
                 
-                Text("\(basicPriceInfo.change, specifier: "%.2f")")
+                Text("\(latestPriceInfo.change, specifier: "%.2f")")
             }
             .foregroundColor(getColor())
         }
@@ -79,10 +89,10 @@ struct BasicPriceInfoCell: View {
     }
     
     func getColor() -> Color {
-        if basicPriceInfo.change > 0 {
+        if latestPriceInfo.change > 0 {
             return Color.green
         }
-        else if basicPriceInfo.change < 0 {
+        else if latestPriceInfo.change < 0 {
             return Color.red
         }
         else {

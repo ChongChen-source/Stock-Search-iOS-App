@@ -30,28 +30,16 @@ struct HomeScreen: View {
                     CurrDateCell()
 
                     Section(header: Text("PORTFOLIO")) {
-                        NetWorthCell(netWorth: getNetWorth())
+                        NetWorthCell()
                         ForEach(localLists.portfolioStocks) { stock in
-                            NavigationLink(destination: StockDetails(ticker: stock.ticker,
-                                                                     descriptionInfo: DescriptionInfo(ticker: stock.ticker),
-                                                                     latestPriceInfo: LatestPriceInfo(ticker: stock.ticker),
-                                                                     newsInfo: NewsInfo(isTest: true),
-                                                                     isFavorited: stock.isFavorited)) {
-                                StockRow(stock: stock)
-                            }
+                            StockRow(prices: portfolioPrices, stock: stock)
                         }
                         .onMove(perform: movePortfolioStocks)
                     }
 
                     Section(header: Text("FAVORITES")) {
                         ForEach(localLists.favoritesStocks) { stock in
-                            NavigationLink(destination: StockDetails(ticker: stock.ticker,
-                                                                     descriptionInfo: DescriptionInfo(ticker: stock.ticker),
-                                                                     latestPriceInfo: LatestPriceInfo(ticker: stock.ticker),
-                                                                     newsInfo: NewsInfo(isTest: true),
-                                                                     isFavorited: stock.isFavorited)) {
-                                StockRow(stock: stock)
-                            }
+                            StockRow(prices: favoritesPrices, stock: stock)
                         }
                         .onMove(perform: moveFavoritesStocks)
                         .onDelete(perform: deleteFavoritesStocks)
@@ -103,12 +91,12 @@ struct HomeScreen_Previews: PreviewProvider {
 }
 
 struct NetWorthCell: View {
-    @State var netWorth: Double
+    @EnvironmentObject var localLists: LocalListsInfo
     var body: some View {
         VStack(alignment: .leading) {
             Text("Net Worth")
                 .font(.title2)
-            Text("\(netWorth, specifier: "%.2f")")
+            Text("\(localLists.netWorth, specifier: "%.2f")")
                 .font(.title2)
                 .fontWeight(.heavy)
         }
