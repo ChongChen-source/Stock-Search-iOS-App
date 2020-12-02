@@ -66,12 +66,13 @@ struct NewsArticleFollowing: View {
                     HStack {
                         Group {
                             Text(article.source)
-                            Text(getTimeAgoStr())
+                            Text(getTimeAgoStr(preDateStr: article.publishedAt))
                         }
                         .font(.footnote)
                         .foregroundColor(Color.gray)
                     }
                     Text(article.title)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 Spacer()
                 KFImage(URL(string: article.urlToImage)!)
@@ -87,9 +88,4 @@ struct NewsArticleFollowing: View {
         }//ZStack
         .cornerRadius(10)
     }//body
-    
-    func getTimeAgoStr() -> String {
-        //let publishedAt: String = article.publishedAt
-        return "XXX days ago"
-    }
 }
