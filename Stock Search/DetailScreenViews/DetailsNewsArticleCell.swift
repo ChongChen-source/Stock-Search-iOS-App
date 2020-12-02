@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KingfisherSwiftUI
 
 struct DetailsNewsArticleCell: View {
     @Environment(\.openURL) var openURL
@@ -15,13 +16,25 @@ struct DetailsNewsArticleCell: View {
             openURL(URL(string: article.url)!)
         }) {
             HStack {
-                VStack {
+                VStack(alignment: .leading) {
                     HStack {
-                        Text(article.source)
+                        Group {
+                            Text(article.source)
+                            Text(getTimeAgoStr())
+                        }
+                        .font(.footnote)
+                        .foregroundColor(Color.gray)
                     }
                     Text(article.title)
+                    
                 }
-                //Image
+                Spacer()
+                KFImage(URL(string: article.urlToImage)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100)
+                    .clipped()
+                    .cornerRadius(10)
             }
         }
         .foregroundColor(Color.black)
@@ -45,14 +58,22 @@ struct DetailsNewsArticleCell: View {
             }) {
                 Label("Share on Twitter", systemImage: "square.and.arrow.up")
             }
-            
-            
-        }
+        }//contenxtMenu
     }//body
+    
+    func getTimeAgoStr() -> String {
+        //let publishedAt: String = article.publishedAt
+        return "XXX days ago"
+    }
 }//struct
 
 struct DetailsNewsArticleCell_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsNewsArticleCell(article: testArticle)
+        VStack {
+            DetailsNewsArticleCell(article: testArticle)
+            DetailsNewsArticleCell(article: testArticle)
+            DetailsNewsArticleCell(article: testArticle)
+            DetailsNewsArticleCell(article: testArticle)
+        }
     }
 }
