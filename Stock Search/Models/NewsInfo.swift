@@ -47,13 +47,16 @@ func getTestArticles() -> [ArticleData] {
 
 class NewsInfo: ObservableObject {
     @Published var articles: [ArticleData]
+    @Published var isFetched: Bool
     
     init(isTest: Bool) {
         self.articles = getTestArticles()
+        self.isFetched = true
     }
     
     init(ticker: String) {
         self.articles = []
+        self.isFetched = false
         let url: String = backendServerUrl + "/get-news/" + ticker
         if let url = URL(string: (url)) {
             print("requesting: \(url)")
@@ -65,6 +68,7 @@ class NewsInfo: ObservableObject {
                         if let articleData = articleJson.to(type: ArticleData.self) {
                             let article = articleData as! ArticleData
                             self.articles.append(article)
+                            self.isFetched = true
                         }//pass value
                     }//loop JSON array
                 }//parse response

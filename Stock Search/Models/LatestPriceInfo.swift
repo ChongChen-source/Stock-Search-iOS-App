@@ -43,6 +43,7 @@ class LatestPriceInfo: ObservableObject {
     @Published var mid: Double
     @Published var volume: Double
     @Published var bidPrice: Double
+    @Published var isFetched: Bool
     
     required init(ticker: String) {
         self.ticker = ticker
@@ -54,6 +55,7 @@ class LatestPriceInfo: ObservableObject {
         self.mid = 0
         self.volume = 0
         self.bidPrice = 0
+        self.isFetched = false
         let url: String = backendServerUrl + "/get-latest-price/" + ticker
         if let url = URL(string: (url)) {
             print("requesting: \(url)")
@@ -72,6 +74,7 @@ class LatestPriceInfo: ObservableObject {
                         self.mid = info.mid
                         self.volume = info.volume
                         self.bidPrice = info.bidPrice
+                        self.isFetched = true
                     }//pass value
                 }//parse response
             }//AF request

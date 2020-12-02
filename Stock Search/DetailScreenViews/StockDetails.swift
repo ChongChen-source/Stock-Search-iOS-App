@@ -19,59 +19,68 @@ struct StockDetails: View {
     @State var showToast: Bool = false
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(alignment: .leading) {
-                DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
-                DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
-                DetailsStatsSection(latestPriceInfo: latestPriceInfo)
-                DetailsAboutSection(descriptionInfo: descriptionInfo)
-//                DetailsNewsSection(newsInfo: newsInfo)
-                DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
+        if !(descriptionInfo.isFetched && latestPriceInfo.isFetched && newsInfo.isFetched) {
+            VStack {
+                ProgressView("Fetching Data...")
             }
-            .padding(.horizontal)
+            .navigationBarTitle(Text(ticker))
         }
-        .navigationBarTitle(Text(ticker))
-        .toast(isPresented: self.$showToast) {
-            Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")
-        }
-        .toolbar {
-            Button(action: withAnimation{{
-                // toggle the flag
-                isFavorited.toggle()
-                // get local list
-                var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
-                
-                // case 1: add to the favorites list
-                if isFavorited {
-                    let stock = BasicStockInfo(ticker: ticker,
-                                               name: descriptionInfo.name,
-                                               isBought: isBought(ticker: ticker),
-                                               sharesBought: getSharesBought(ticker: ticker),
-                                               isFavorited: true)
-                    favoritesList.append(stock)
+        
+        else {
+            ScrollView(.vertical) {
+                VStack(alignment: .leading) {
+                    DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
+                    DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
+                    DetailsStatsSection(latestPriceInfo: latestPriceInfo)
+                    DetailsAboutSection(descriptionInfo: descriptionInfo)
+    //                DetailsNewsSection(newsInfo: newsInfo)
+                    DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
                 }
-                // case 2: remove from the favorites list
-                else if !favoritesList.isEmpty {
-                    var removeIndex: Int = -1
-                    for (index, localStock) in favoritesList.enumerated() {
-                        if (localStock.ticker == ticker) {
-                            favoritesList[index].isFavorited = false
-                            removeIndex = index
+                .padding(.horizontal)
+            }
+            .navigationBarTitle(Text(ticker))
+            .toast(isPresented: self.$showToast) {
+                Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")
+            }
+            .toolbar {
+                Button(action: withAnimation{{
+                    // toggle the flag
+                    isFavorited.toggle()
+                    // get local list
+                    var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
+                    
+                    // case 1: add to the favorites list
+                    if isFavorited {
+                        let stock = BasicStockInfo(ticker: ticker,
+                                                   name: descriptionInfo.name,
+                                                   isBought: isBought(ticker: ticker),
+                                                   sharesBought: getSharesBought(ticker: ticker),
+                                                   isFavorited: true)
+                        favoritesList.append(stock)
+                    }
+                    // case 2: remove from the favorites list
+                    else if !favoritesList.isEmpty {
+                        var removeIndex: Int = -1
+                        for (index, localStock) in favoritesList.enumerated() {
+                            if (localStock.ticker == ticker) {
+                                favoritesList[index].isFavorited = false
+                                removeIndex = index
+                            }
+                        }
+                        if removeIndex != -1 {
+                            favoritesList.remove(at: removeIndex)
                         }
                     }
-                    if removeIndex != -1 {
-                        favoritesList.remove(at: removeIndex)
-                    }
+                    // update local storage
+                    localLists.favoritesStocks = favoritesList
+                    setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
+                    // show toast
+                    self.showToast = true
+                }}){
+                    Image(systemName: isFavorited ? "plus.circle.fill" : "plus.circle")
                 }
-                // update local storage
-                localLists.favoritesStocks = favoritesList
-                setLocalStocks(localStocks: favoritesList, listName: listNameFavorites)
-                // show toast
-                self.showToast = true
-            }}){
-                Image(systemName: isFavorited ? "plus.circle.fill" : "plus.circle")
-            }
-        }//toolbar
+            }//toolbar
+        }//if-else: ProgressView
     }//body
 }//struct
 

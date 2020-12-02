@@ -25,11 +25,13 @@ class DescriptionInfo: ObservableObject {
     @Published var ticker: String
     @Published var name: String
     @Published var description: String
+    @Published var isFetched: Bool
     
     required init(ticker: String) {
         self.ticker = ticker
         self.name = ""
         self.description = ""
+        self.isFetched = false
         let url: String = backendServerUrl + "/get-company-description/" + ticker
         if let url = URL(string: (url)) {
             print("requesting: \(url)")
@@ -40,6 +42,7 @@ class DescriptionInfo: ObservableObject {
                         let descriptionInfoData = jsonData as! DescriptionInfoData
                         self.name = descriptionInfoData.name
                         self.description = descriptionInfoData.description
+                        self.isFetched = true
                     }//pass value
                 }//parse response
             }//AF request
