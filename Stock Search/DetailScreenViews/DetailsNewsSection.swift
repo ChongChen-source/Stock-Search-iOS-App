@@ -16,7 +16,7 @@ struct DetailsNewsSection: View {
                 .font(.title2)
                 .padding(.vertical)
             if !articles.isEmpty {
-                DetailsNewsArticleCell(article: articles.remove(at: 0))
+                DetailsNewsHeadArticle(article: articles.remove(at: 0))
             }
             Divider()
             ForEach(articles) { article in
@@ -28,6 +28,11 @@ struct DetailsNewsSection: View {
 
 struct DetailsNewsSection_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
+        ScrollView(.vertical) {
+            VStack {
+                DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
+            }
+            .padding(.horizontal)
+        }
     }
 }

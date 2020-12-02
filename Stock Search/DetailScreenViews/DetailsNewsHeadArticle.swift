@@ -1,18 +1,18 @@
 //
-//  DetailsNewsArticleCell.swift
+//  DetailsNewsHeadArticle.swift
 //  Stock Search
 //
-//  Created by 陈冲 on 12/1/20.
+//  Created by 陈冲 on 12/2/20.
 //
 
 import SwiftUI
 import KingfisherSwiftUI
 
-struct DetailsNewsArticleCell: View {
+struct DetailsNewsHeadArticle: View {
     @Environment(\.openURL) var openURL
     @ObservedObject var article: ArticleData
     var body: some View {
-        NewsArticleFollowing(article: article)
+        NewsArticleHead(article: article)
         .contextMenu {
             Button(action: {
                 openURL(URL(string: article.url)!)
@@ -37,28 +37,30 @@ struct DetailsNewsArticleCell: View {
     }//body
 }//struct
 
-struct DetailsNewsArticleCell_Previews: PreviewProvider {
-    static let articles = getTestArticles()
+struct DetailsNewsHeadArticle_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView(.vertical) {
-            VStack {
-                ForEach(articles) { article in
-                    DetailsNewsArticleCell(article: article)
-                }
-            }
-            .padding(.horizontal)
+        VStack {
+            DetailsNewsHeadArticle(article: testArticle)
         }
+        .padding(.horizontal)
     }
 }
 
-struct NewsArticleFollowing: View {
+struct NewsArticleHead: View {
     @ObservedObject var article: ArticleData
     @Environment(\.openURL) var openURL
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                             .fill(Color.white)
-            HStack {
+            VStack(alignment: .leading) {
+                KFImage(URL(string: article.urlToImage)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: 200, alignment: .center)
+                    .contentShape(RoundedRectangle(cornerRadius: 10))
+                    .clipped()
+                    .cornerRadius(10)
                 VStack(alignment: .leading) {
                     HStack {
                         Group {
@@ -71,15 +73,8 @@ struct NewsArticleFollowing: View {
                     Text(article.title)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
-                Spacer()
-                KFImage(URL(string: article.urlToImage)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .contentShape(RoundedRectangle(cornerRadius: 10))
-                    .clipped()
-                    .cornerRadius(10)
-            }//HStack
+                .frame(width: .infinity, height: 80)
+            }//VStack
             .cornerRadius(10)
         }//ZStack
         .cornerRadius(10)
