@@ -9,12 +9,18 @@ import SwiftUI
 
 struct StockRow: View {
     var stock: BasicStockInfo
+    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
     
     var body: some View {
+        var latestPriceInfo: LatestPriceInfo = LatestPriceInfo(ticker: stock.ticker)
         HStack {
             BasicStockInfoCell(stock: stock)
             Spacer()
-            BasicPriceInfoCell(latestPriceInfo: LatestPriceInfo(ticker: stock.ticker))
+            BasicPriceInfoCell(latestPriceInfo: latestPriceInfo)
+        }
+        .onReceive(timer) { time in
+            print("Refresh price every 15s: \(time)")
+            latestPriceInfo = LatestPriceInfo(ticker: stock.ticker)
         }
     }
 }
@@ -69,6 +75,7 @@ struct BasicPriceInfoCell: View {
             }
             .foregroundColor(getColor())
         }
+
     }
     
     func getColor() -> Color {
