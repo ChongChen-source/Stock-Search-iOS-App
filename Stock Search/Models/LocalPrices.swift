@@ -37,6 +37,10 @@ class LocalPrices: ObservableObject {
                     if let data = response.data {
                         let json = JSON(data)
                         let infoArr:[JSON] = json.arrayValue
+                        if infoArr.isEmpty {
+                            self.count -= 1
+                            return
+                        }
                         let infoJson:JSON = infoArr[0]
                         if let infoData = infoJson.to(type: LatestPriceData.self) {
                             let info = infoData as! LatestPriceData

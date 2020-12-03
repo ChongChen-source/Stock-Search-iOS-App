@@ -77,6 +77,10 @@ class LatestPriceInfo: ObservableObject {
                 if let data = response.data {
                     let json = JSON(data)
                     let infoArr:[JSON] = json.arrayValue
+                    if infoArr.isEmpty {
+                        self.isFetched = true
+                        return
+                    }
                     let infoJson:JSON = infoArr[0]
                     if let infoData = infoJson.to(type: LatestPriceData.self) {
                         let info = infoData as! LatestPriceData
@@ -113,6 +117,10 @@ class LatestPriceInfo: ObservableObject {
                 if let data = response.data {
                     let json = JSON(data)
                     let infoArr:[JSON] = json.arrayValue
+                    if infoArr.isEmpty {
+                        self.isFetched = true
+                        return
+                    }
                     let infoJson:JSON = infoArr[0]
                     if let infoData = infoJson.to(type: LatestPriceData.self) {
                         let info = infoData as! LatestPriceData

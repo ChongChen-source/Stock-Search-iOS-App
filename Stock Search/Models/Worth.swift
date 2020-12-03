@@ -33,7 +33,7 @@ func getSharesWorth() -> Double {
     let portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
     for stock in portfolioStocks {
         let currPrice: Double = LatestPriceInfo(ticker: stock.ticker).currPrice
-        sharesWorth += currPrice * stock.sharesBought
+        sharesWorth += (currPrice * stock.sharesBought)
     }
     return sharesWorth
 }
