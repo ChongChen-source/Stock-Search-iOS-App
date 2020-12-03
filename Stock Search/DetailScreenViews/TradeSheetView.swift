@@ -53,7 +53,7 @@ struct TradeSheetView: View {
                         .padding(.vertical)
                     HStack {
                         // Buy button
-                        Button(action: {
+                        Button(action: withAnimation {{
                             if isValidInput() {
                                 if getAvailableWorth() < getCalcWorth() {
                                     self.showErrorNotEnoughMoney = true
@@ -107,16 +107,17 @@ struct TradeSheetView: View {
                             } else {
                                 self.showErrorInvalidInput = true
                             }
-                        }) {
-                            Text("Buy")
-                                .font(.title3)
-                                .padding(.horizontal, 50)
-                                .padding(.vertical, 16)
-                                .background(Color.green)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(40)
+                        }}) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 40)
+                                                .fill(Color.green)
+                                Text("Buy")
+                                    .foregroundColor(Color.white)
+                            }
+                            .padding(.trailing)
+                            .frame(height: 60)
                         }
-                        
+                        Spacer()
                         // Sell button
                         Button(action: withAnimation {{
                             if isValidInput() {
@@ -174,13 +175,14 @@ struct TradeSheetView: View {
                                 self.showErrorInvalidInput = true
                             }
                         }}) {
-                            Text("Sell")
-                                .font(.title3)
-                                .padding(.horizontal, 50)
-                                .padding(.vertical, 16)
-                                .background(Color.green)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(40)
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 40)
+                                                .fill(Color.green)
+                                Text("Sell")
+                                    .foregroundColor(Color.white)
+                            }
+                            .padding(.leading)
+                            .frame(height: 60)
                         }
                     }
                 }
