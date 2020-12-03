@@ -31,6 +31,7 @@ struct TradeSheetView: View {
                 VStack {
                     Text("Trade \(stock.name) shares")
                         .fontWeight(.bold)
+                        .padding(.bottom)
                     Spacer()
                     VStack {
                         HStack {
@@ -194,18 +195,28 @@ struct TradeSheetView: View {
                 }//toobar
                 .toast(isPresented: self.$showErrorNotEnoughShares) {
                     Text("Not enough shares to sell")
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                 }
                 .toast(isPresented: self.$showErrorNotEnoughMoney) {
                     Text("Not enough money to buy")
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                 }
                 .toast(isPresented: self.$showErrorSellNonpositiveShares) {
                     Text("Cannot sell less than 0 share")
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                 }
                 .toast(isPresented: self.$showErrorBuyNonpositiveShares) {
                     Text("Cannot buy less than 0 share")
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                 }
                 .toast(isPresented: self.$showErrorInvalidInput) {
                     Text("Please enter a valid amount")
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                 }
             } else {
                 ZStack {
@@ -214,7 +225,7 @@ struct TradeSheetView: View {
                     VStack {
                         Spacer()
                         Text("Congratuations!")
-                            .font(.title)
+                            .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.white)
                             .padding(.bottom)

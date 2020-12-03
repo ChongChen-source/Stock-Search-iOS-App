@@ -95,9 +95,9 @@ struct NetWorthCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Net Worth")
-                .font(.title2)
+                .font(.title)
             Text("\(localLists.netWorth, specifier: "%.2f")")
-                .font(.title2)
+                .font(.title)
                 .fontWeight(.heavy)
         }
     }

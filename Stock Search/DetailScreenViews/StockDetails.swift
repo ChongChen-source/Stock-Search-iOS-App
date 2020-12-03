@@ -44,6 +44,8 @@ struct StockDetails: View {
             .navigationBarTitle(Text(ticker))
             .toast(isPresented: self.$showToast) {
                 Text(isFavorited ? "Adding \(ticker) to Favorites" : "Removing \(ticker) from Favorites")
+                    .foregroundColor(Color.white)
+                    .padding(.vertical)
             }
             .toolbar {
                 Button(action: withAnimation{{
