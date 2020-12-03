@@ -20,6 +20,7 @@ struct DetailsStatsSection: View {
         VStack(alignment: .leading) {
             Text("Stats")
                 .font(.title2)
+                .fontWeight(.medium)
                 .padding(.vertical)
             ScrollView(.horizontal) {
                 LazyHGrid(rows: thressColumnGrid, spacing: 40) {
@@ -31,15 +32,16 @@ struct DetailsStatsSection: View {
                     Text("Volume: \(latestPriceInfo.volume, specifier: "%.2f")")
                     Text("Bid Price: \(latestPriceInfo.bidPrice, specifier: "%.2f")")
                 }
+                .frame(height: 120, alignment: .leading)
                 .padding(.vertical, 0)
             }
         }
     }
 }
 
-//struct DetailsStatsSection_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailsStatsCell(statsInfo: LatestPriceInfo(ticker: "AAPL").statsInfo)
-//            .previewLayout(.fixed(width: 400, height: 200))
-//    }
-//}
+struct DetailsStatsSection_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailsStatsSection(latestPriceInfo: LatestPriceInfo(ticker: "AAPL"))
+            .previewLayout(.fixed(width: 400, height: 200))
+    }
+}

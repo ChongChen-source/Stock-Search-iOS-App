@@ -16,6 +16,7 @@ struct DetailsPortfolioSection: View {
         VStack(alignment: .leading) {
             Text("Portfolio")
                 .font(.title2)
+                .fontWeight(.medium)
                 .padding(.vertical)
             HStack {
                 if stock.isBought {

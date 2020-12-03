@@ -14,6 +14,7 @@ struct DetailsNewsSection: View {
         VStack(alignment: .leading) {
             Text("News")
                 .font(.title2)
+                .fontWeight(.medium)
                 .padding(.vertical)
             if !articles.isEmpty {
                 DetailsNewsHeadArticle(article: articles.remove(at: 0))

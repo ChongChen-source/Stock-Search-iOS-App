@@ -16,6 +16,7 @@ struct DetailsAboutSection: View {
         VStack(alignment: .leading) {
             Text("About")
                 .font(.title2)
+                .fontWeight(.medium)
                 .padding(.vertical)
             Text(descriptionInfo.description)
                 .lineLimit( isExpanded ? nil: 2)

@@ -83,5 +83,8 @@ struct NewsArticleFollowing: View {
             .cornerRadius(10)
         }//ZStack
         .cornerRadius(10)
+        .onTapGesture { withAnimation {
+            openURL(URL(string: article.url)!)
+        }}
     }//body
 }

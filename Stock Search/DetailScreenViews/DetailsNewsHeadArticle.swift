@@ -73,10 +73,13 @@ struct NewsArticleHead: View {
                     Text(article.title)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
-                .frame(width: .infinity, height: 80)
+                .frame(height: 80)
             }//VStack
             .cornerRadius(10)
         }//ZStack
         .cornerRadius(10)
+        .onTapGesture { withAnimation {
+            openURL(URL(string: article.url)!)
+        }}
     }//body
 }
