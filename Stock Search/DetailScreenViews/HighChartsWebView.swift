@@ -17,11 +17,14 @@ struct HighChartsWebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        let localUrl = Bundle.main.url(forResource: "HighCharts", withExtension: "html", subdirectory: "HighCharts")!
-        let url = URL(string: "?ticker=" + ticker, relativeTo: localUrl)!
-        uiView.loadFileURL(url, allowingReadAccessTo: url)
+//        let localUrl = Bundle.main.url(forResource: "HighCharts", withExtension: "html", subdirectory: "HighCharts")!
+//        let url = URL(string: "?ticker=" + ticker, relativeTo: localUrl)!
+//        uiView.loadFileURL(url, allowingReadAccessTo: url)
+        let url = URL(string: "http://localhost:8080/high-charts")!
         let request = URLRequest(url: url)
         uiView.load(request)
+        uiView.scrollView.bounces = false
+        uiView.scrollView.isScrollEnabled = false
     }
 }
 

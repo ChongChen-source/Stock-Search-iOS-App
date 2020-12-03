@@ -32,12 +32,12 @@ struct StockDetails: View {
                     DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
                     VStack {
                         HighChartsWebView(ticker: ticker)
+                            .frame(height:330)
                     }
-                    .frame(height: 520)
                     DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                     DetailsStatsSection(latestPriceInfo: latestPriceInfo)
                     DetailsAboutSection(descriptionInfo: descriptionInfo)
-                    DetailsNewsSection(newsInfo: NewsInfo(ticker: ticker))
+                    DetailsNewsSection(newsInfo: newsInfo)
                 }
                 .padding(.horizontal)
             }
@@ -53,7 +53,7 @@ struct StockDetails: View {
                     var favoritesList: [BasicStockInfo] = getLocalStocks(listName: listNameFavorites)
                     
                     // case 1: add to the favorites list
-                    if isFavorited {
+                    if isFavorited && !Stock_Search.isFavorited(ticker: ticker){
                         let stock = BasicStockInfo(ticker: ticker,
                                                    name: descriptionInfo.name,
                                                    isBought: isBought(ticker: ticker),

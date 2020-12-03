@@ -15,21 +15,19 @@ struct StockRow: View {
     
     var body: some View {
         var latestPriceInfo: LatestPriceInfo = prices.getPrice(ticker: stock.ticker)
-        NavigationLink(destination: StockDetails(ticker: stock.ticker,
-                                                 descriptionInfo: DescriptionInfo(ticker: stock.ticker),
-                                                 latestPriceInfo: latestPriceInfo,
-                                                 newsInfo: NewsInfo(isTest: true),
-                                                 isFavorited: stock.isFavorited)) {
-            HStack {
-                BasicStockInfoCell(stock: stock)
-                Spacer()
-                BasicPriceInfoCell(latestPriceInfo: latestPriceInfo)
-            }
-            .onReceive(timer) { time in
-                print("Refresh price every 15s: \(time)")
-                latestPriceInfo = LatestPriceInfo(preInfo: latestPriceInfo)
-                localLists.netWorth = localLists.availableWorth + getSharesWorth()
-                setNetWorth(worth: localLists.netWorth)
+            NavigationLink(destination: StockDetails(ticker: stock.ticker,
+                                                     descriptionInfo: DescriptionInfo(ticker: stock.ticker),
+                                                     latestPriceInfo: latestPriceInfo,
+                                                     newsInfo: NewsInfo(isTest: true),
+                                                     isFavorited: Stock_Search.isFavorited(ticker: stock.ticker))) {
+                HStack {
+                    BasicStockInfoCell(stock: stock)
+                    Spacer()
+                    BasicPriceInfoCell(latestPriceInfo: latestPriceInfo)
+                }
+                .onReceive(timer) { time in
+                    print("Refresh price every 15s: \(time)")
+                    latestPriceInfo = LatestPriceInfo(preInfo: latestPriceInfo)
             }
         }
     }

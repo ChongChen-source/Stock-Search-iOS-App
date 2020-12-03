@@ -54,6 +54,8 @@ func getTimeAgoStr(preDateStr: String) -> String {
 
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US")
+    let timeZone = TimeZone(identifier: "America/Los_Angeles")!
+    dateFormatter.timeZone = timeZone
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     
     let preDate: Date = dateFormatter.date(from:preDateStr)!

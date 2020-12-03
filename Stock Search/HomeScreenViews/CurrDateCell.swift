@@ -23,6 +23,8 @@ struct CurrDateCell: View {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "en_US")
+        let timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        formatter.timeZone = timeZone
         formatter.setLocalizedDateFormatFromTemplate("MMMMd, yyyy")
 //        formatter.dateFormat = "hh:mm:ss a" // Test live time
         return formatter

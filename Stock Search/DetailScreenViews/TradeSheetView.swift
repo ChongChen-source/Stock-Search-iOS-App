@@ -60,12 +60,10 @@ struct TradeSheetView: View {
                                 } else if getNumInput() <= 0 {
                                     self.showErrorBuyNonpositiveShares = true
                                 } else {
-                                    // update the available worth and the net worth
+                                    // update the available worth
                                     self.availableWorth = getAvailableWorth() - getCalcWorth()
                                     setAvailableWorth(availableWorth: self.availableWorth)
                                     localLists.availableWorth = self.availableWorth
-                                    localLists.netWorth = self.availableWorth + getSharesWorth()
-                                    setNetWorth(worth: localLists.netWorth)
                                     
                                     // update the stock info
                                     self.stock.sharesBought += getNumInput()
@@ -130,8 +128,6 @@ struct TradeSheetView: View {
                                     self.availableWorth = getAvailableWorth() + getCalcWorth()
                                     setAvailableWorth(availableWorth: self.availableWorth)
                                     localLists.availableWorth = self.availableWorth
-                                    localLists.netWorth = self.availableWorth + getSharesWorth()
-                                    setNetWorth(worth: localLists.netWorth)
                                     
                                     // update the stock info
                                     self.stock.sharesBought -= getNumInput()
