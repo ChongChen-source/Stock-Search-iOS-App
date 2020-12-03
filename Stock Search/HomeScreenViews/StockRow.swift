@@ -28,7 +28,7 @@ struct StockRow: View {
                 .onReceive(timer) { time in
                     print("Refresh price every 15s: \(time)")
                     latestPriceInfo = LatestPriceInfo(preInfo: latestPriceInfo)
-            }
+                }
         }
     }
 }

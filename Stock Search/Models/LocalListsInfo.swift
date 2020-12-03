@@ -13,11 +13,11 @@ class LocalListsInfo: ObservableObject {
     @Published var availableWorth: Double
     @Published var netWorth: Double
     
-    init(portfolioStocks: [BasicStockInfo] = [], favoritesStocks: [BasicStockInfo] = [], availableWorth: Double = 2000) {
+    init(portfolioStocks: [BasicStockInfo] = [], favoritesStocks: [BasicStockInfo] = [], availableWorth: Double, netWorth: Double) {
         self.portfolioStocks = portfolioStocks
         self.favoritesStocks = favoritesStocks
         self.availableWorth = availableWorth
-        self.netWorth = availableWorth
+        self.netWorth = netWorth
     }
 }
 

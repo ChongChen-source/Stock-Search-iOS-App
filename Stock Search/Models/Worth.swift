@@ -28,16 +28,6 @@ func getAvailableWorth() -> Double {
     }
 }
 
-func getSharesWorth() -> Double {
-    var sharesWorth: Double = 0
-    let portfolioStocks: [BasicStockInfo] = getLocalStocks(listName: listNamePortfolio)
-    for stock in portfolioStocks {
-        let currPrice: Double = LatestPriceInfo(ticker: stock.ticker).currPrice
-        sharesWorth += (currPrice * stock.sharesBought)
-    }
-    return sharesWorth
-}
-
 func getNetWorth() -> Double {
     if UserDefaults.standard.valueExists(forKey: keyNameNetWorth) {
         return UserDefaults.standard.double(forKey: keyNameNetWorth)

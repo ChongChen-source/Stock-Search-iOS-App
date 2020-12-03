@@ -86,19 +86,27 @@ struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen(portfolioPrices: LocalPrices(listName: listNamePortfolio), favoritesPrices: LocalPrices(listName: listNameFavorites))
             .environmentObject(LocalListsInfo(portfolioStocks: getLocalStocks(listName: listNamePortfolio),
-                                                  favoritesStocks: getLocalStocks(listName: listNameFavorites)))
+                                                  favoritesStocks: getLocalStocks(listName: listNameFavorites),
+                                                  availableWorth: getAvailableWorth(),
+                                                  netWorth: getNetWorth()))
     }
 }
 
 struct NetWorthCell: View {
     @EnvironmentObject var localLists: LocalListsInfo
+    @State var netWorth = getNetWorth()
+    let timer = Timer.publish(every: 15, on: .main, in: .common).autoconnect()
     var body: some View {
         VStack(alignment: .leading) {
             Text("Net Worth")
                 .font(.title)
-            Text("\(localLists.netWorth, specifier: "%.2f")")
+            Text("\(netWorth, specifier: "%.2f")")
                 .font(.title)
                 .fontWeight(.heavy)
+        }
+        .onReceive(timer) { time in
+            print("Refreshing Net Worth")
+            netWorth = getNetWorth()
         }
     }
 }
