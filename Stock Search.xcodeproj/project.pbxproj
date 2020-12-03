@@ -19,6 +19,8 @@
 		D47C970B25777DE20020645B /* TimeAgoFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C970A25777DE20020645B /* TimeAgoFunc.swift */; };
 		D47C9713257780BC0020645B /* DetailsNewsHeadArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C9712257780BC0020645B /* DetailsNewsHeadArticle.swift */; };
 		D47C97862577CEEA0020645B /* LocalPrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C97852577CEEA0020645B /* LocalPrices.swift */; };
+		D47C97B82578CA6F0020645B /* HighChartsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47C97B72578CA6E0020645B /* HighChartsWebView.swift */; };
+		D47C97C02578D6420020645B /* HighCharts in Resources */ = {isa = PBXBuildFile; fileRef = D47C97BF2578D6420020645B /* HighCharts */; };
 		D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71C22572481E002E51C4 /* testLatestPriceData.json */; };
 		D47E71CB2572497F002E51C4 /* testCompanyDescriptionData.json in Resources */ = {isa = PBXBuildFile; fileRef = D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */; };
 		D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */; };
@@ -79,6 +81,8 @@
 		D47C970A25777DE20020645B /* TimeAgoFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAgoFunc.swift; sourceTree = "<group>"; };
 		D47C9712257780BC0020645B /* DetailsNewsHeadArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsNewsHeadArticle.swift; sourceTree = "<group>"; };
 		D47C97852577CEEA0020645B /* LocalPrices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPrices.swift; sourceTree = "<group>"; };
+		D47C97B72578CA6E0020645B /* HighChartsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighChartsWebView.swift; sourceTree = "<group>"; };
+		D47C97BF2578D6420020645B /* HighCharts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HighCharts; sourceTree = "<group>"; };
 		D47E71C22572481E002E51C4 /* testLatestPriceData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testLatestPriceData.json; sourceTree = "<group>"; };
 		D47E71CA2572497F002E51C4 /* testCompanyDescriptionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testCompanyDescriptionData.json; sourceTree = "<group>"; };
 		D47E71CF25724A7A002E51C4 /* LatestPriceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestPriceInfo.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				D487821D2573B97A009A0126 /* Toast.swift */,
 				D47C961B25767BA00020645B /* DetailsNewsArticleCell.swift */,
 				D47C9712257780BC0020645B /* DetailsNewsHeadArticle.swift */,
+				D47C97B72578CA6E0020645B /* HighChartsWebView.swift */,
+				D47C97BF2578D6420020645B /* HighCharts */,
 			);
 			path = DetailScreenViews;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				D487843625751289009A0126 /* testAutocompleteData.json in Resources */,
 				D4BAA4F2256EC44E0088F042 /* testStocks.json in Resources */,
 				D47E71C32572481E002E51C4 /* testLatestPriceData.json in Resources */,
+				D47C97C02578D6420020645B /* HighCharts in Resources */,
 				D47C962125767CEE0020645B /* testArticleData.json in Resources */,
 				D4F102EB256511A500C16A0D /* Assets.xcassets in Resources */,
 				D47C969425775D0B0020645B /* testArticles.json in Resources */,
@@ -429,6 +436,7 @@
 				D47E73692573499B002E51C4 /* DetailsNewsSection.swift in Sources */,
 				D47E71D025724A7A002E51C4 /* LatestPriceInfo.swift in Sources */,
 				D485FCEB256B984F00390E54 /* HomeScreen.swift in Sources */,
+				D47C97B82578CA6F0020645B /* HighChartsWebView.swift in Sources */,
 				D47C97862577CEEA0020645B /* LocalPrices.swift in Sources */,
 				D4BAA48C256E7C130088F042 /* ViewControllerResolver.swift in Sources */,
 				D4F102E7256511A200C16A0D /* SceneDelegate.swift in Sources */,

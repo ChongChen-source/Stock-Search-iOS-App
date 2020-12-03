@@ -30,11 +30,14 @@ struct StockDetails: View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading) {
                     DetailsHeadSection(descriptionInfo: descriptionInfo, latestPriceInfo: latestPriceInfo)
+                    VStack {
+                        HighChartsWebView(ticker: ticker)
+                    }
+                    .frame(height: 520)
                     DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                     DetailsStatsSection(latestPriceInfo: latestPriceInfo)
                     DetailsAboutSection(descriptionInfo: descriptionInfo)
-    //                DetailsNewsSection(newsInfo: newsInfo)
-                    DetailsNewsSection(newsInfo: NewsInfo(isTest: true))
+                    DetailsNewsSection(newsInfo: NewsInfo(ticker: ticker))
                 }
                 .padding(.horizontal)
             }

@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailsNewsSection: View {
     @ObservedObject var newsInfo: NewsInfo
     var body: some View {
-        var articles = getTestArticles()
+        var articles = newsInfo.articles
         VStack(alignment: .leading) {
             Text("News")
                 .font(.title2)
