@@ -20,10 +20,11 @@ struct HighChartsWebView: UIViewRepresentable {
 //        let localUrl = Bundle.main.url(forResource: "HighCharts", withExtension: "html", subdirectory: "HighCharts")!
 //        let url = URL(string: "?ticker=" + ticker, relativeTo: localUrl)!
 //        uiView.loadFileURL(url, allowingReadAccessTo: url)
-        let url = URL(string: "http://localhost:8080/high-charts")!
+        let urlStr = "http://localhost:8080/high-charts/" + ticker
+        let url = URL(string: urlStr)!
         let request = URLRequest(url: url)
+        print("request WebView: " + urlStr)
         uiView.load(request)
-        uiView.scrollView.bounces = false
         uiView.scrollView.isScrollEnabled = false
     }
 }

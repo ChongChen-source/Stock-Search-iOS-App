@@ -47,11 +47,14 @@ class AutocompleteData: JSONable {
     }
 }
 
+
 class AutocompleteStocks: ObservableObject {
     @Published var stocks: [BasicStockInfo]
-    var dataArr: [AutocompleteData]
+    @Published var key: String
+    @Published var dataArr: [AutocompleteData]
     
     required init(input: String) {
+        self.key = input
         self.stocks = []
         self.dataArr = []
         let url: String = backendServerUrl + "/autocomplete/" + input
