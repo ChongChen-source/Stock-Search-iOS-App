@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailsPortfolioSection: View {
     @EnvironmentObject var localLists: LocalListsInfo
+    @ObservedObject var descriptionInfo: DescriptionInfo
     @State var stock: BasicStockInfo
     @State var showTradeSheet: Bool = false
     @ObservedObject var latestPriceInfo: LatestPriceInfo
@@ -43,7 +44,7 @@ struct DetailsPortfolioSection: View {
                         .cornerRadius(40)
                 }
                 .sheet(isPresented: $showTradeSheet) {
-                    TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: latestPriceInfo)
+                    TradeSheetView(descriptionInfo: descriptionInfo, showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: latestPriceInfo)
                         }
             }
         }

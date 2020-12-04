@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TradeSheetView: View {
     @EnvironmentObject var localLists: LocalListsInfo
+    @ObservedObject var descriptionInfo: DescriptionInfo
     @Binding var showTradeSheet: Bool
     @Binding var stock: BasicStockInfo
     @ObservedObject var latestPriceInfo: LatestPriceInfo
@@ -29,7 +30,7 @@ struct TradeSheetView: View {
         NavigationView {
             if (!showBoughtView && !showSoldView) {
                 VStack {
-                    Text("Trade \(stock.name) shares")
+                    Text("Trade \(descriptionInfo.name) shares")
                         .fontWeight(.bold)
                         .padding(.bottom)
                     Spacer()
@@ -287,10 +288,10 @@ struct TradeSheetView: View {
     }
 }//view
 
-struct TradeSheetView_Previews: PreviewProvider {
-    @State static var showTradeSheet: Bool = false
-    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
-    static var previews: some View {
-        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: LatestPriceInfo(ticker: stock.ticker))
-    }
-}
+//struct TradeSheetView_Previews: PreviewProvider {
+//    @State static var showTradeSheet: Bool = false
+//    @State static var stock: BasicStockInfo = getBasicStockInfo(ticker: "AAPL")
+//    static var previews: some View {
+//        TradeSheetView(showTradeSheet: $showTradeSheet, stock: $stock, latestPriceInfo: LatestPriceInfo(ticker: stock.ticker))
+//    }
+//}

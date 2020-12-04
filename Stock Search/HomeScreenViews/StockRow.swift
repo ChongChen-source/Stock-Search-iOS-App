@@ -18,7 +18,7 @@ struct StockRow: View {
             NavigationLink(destination: StockDetails(ticker: stock.ticker,
                                                      descriptionInfo: DescriptionInfo(ticker: stock.ticker),
                                                      latestPriceInfo: latestPriceInfo,
-                                                     newsInfo: NewsInfo(isTest: true),
+                                                     newsInfo: NewsInfo(ticker: stock.ticker),
                                                      isFavorited: Stock_Search.isFavorited(ticker: stock.ticker))) {
                 HStack {
                     BasicStockInfoCell(stock: stock)

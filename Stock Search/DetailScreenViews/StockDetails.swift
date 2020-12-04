@@ -34,7 +34,7 @@ struct StockDetails: View {
                         HighChartsWebView(ticker: ticker)
                             .frame(height:330)
                     }
-                    DetailsPortfolioSection(stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
+                    DetailsPortfolioSection(descriptionInfo: descriptionInfo, stock: getBasicStockInfo(ticker: ticker), latestPriceInfo: latestPriceInfo)
                     DetailsStatsSection(latestPriceInfo: latestPriceInfo)
                     DetailsAboutSection(descriptionInfo: descriptionInfo)
                     DetailsNewsSection(newsInfo: newsInfo)
