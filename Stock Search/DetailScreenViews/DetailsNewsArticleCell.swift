@@ -72,13 +72,15 @@ struct NewsArticleFollowing: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 Spacer()
-                KFImage(URL(string: article.urlToImage)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .contentShape(RoundedRectangle(cornerRadius: 10))
-                    .clipped()
-                    .cornerRadius(10)
+                if let imageURL = URL(string: article.urlToImage) {
+                    KFImage(imageURL)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100)
+                        .contentShape(RoundedRectangle(cornerRadius: 10))
+                        .clipped()
+                        .cornerRadius(10)
+                }
             }//HStack
             .cornerRadius(10)
         }//ZStack

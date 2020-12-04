@@ -13,7 +13,7 @@ extension UserDefaults {
     }
 }
 
-let initNetWorth: Double = 2000
+let initNetWorth: Double = 20000
 
 func setAvailableWorth(availableWorth: Double) -> Void {
     UserDefaults.standard.set(availableWorth, forKey: keyNameAvailableWorth)
